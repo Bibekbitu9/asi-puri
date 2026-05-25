@@ -1,0 +1,11 @@
+# Exclude large PDF primary source document (exceeds GitHub's 100MB limit)
+Puri-New 06 July 2025 Print.pdf
+
+# Exclude OS generated files
+.DS_Store
+Thumbs.db
+
+# Exclude archives and logs
+*.zip
+*.tar.gz
+*.log
