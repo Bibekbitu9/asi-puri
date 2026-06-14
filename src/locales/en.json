@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Home",
+    "monuments": "Monuments",
+    "gallery": "Gallery",
+    "visitorInfo": "Visitor Info",
+    "notices": "Notices",
+    "about": "About Us"
+  },
+  "hero": {
+    "title": "Archaeological Survey of India",
+    "subtitle": "Puri Circle, Odisha",
+    "tagline": "Preserving the rich cultural heritage and magnificent sandstone monuments of Odisha",
+    "explore": "Explore Monuments",
+    "aboutCircle": "About Puri Circle"
+  },
+  "home": {
+    "announcements": "Announcements",
+    "ticker_1": "Welcome to the official portal of Archaeological Survey of India, Puri Circle.",
+    "ticker_2": "Puri Circle manages 40 centrally protected monuments and sites including Konark Sun Temple.",
+    "ticker_3": "Visitor timing for all major monuments: 6:00 AM to 6:00 PM.",
+    "intro_title": "Welcome to ASI Puri Circle",
+    "intro_p1": "The Archaeological Survey of India, under the Ministry of Culture, Govt. of India is the premier organisation for archaeological researches and protection of the cultural heritage of the nation. For the maintenance of ancient monuments and archaeological sites and remains of national importance the entire country is divided into 37 Circles and 1 Mini Circle.",
+    "intro_p2": "The Puri Circle was created after bifurcating the erstwhile Bhubaneswar Circle on 9th November 2022 to look after 40 centrally protected monuments and sites which includes one World Heritage Monument (Sun Temple, Konark) and three Archaeological Site Museums located in 15 districts of Odisha. There are 4 Sub-Circles located at Cuttack, Dhenkanal, Konark and Puri for upkeepment of the monuments/sites.",
+    "featured_monuments": "Featured Monuments",
+    "view_all": "View All Monuments",
+    "stats_monuments": "Protected Monuments",
+    "stats_museums": "Site Museums",
+    "stats_districts": "Districts Covered",
+    "stats_subcircles": "Sub-Circles"
+  },
+  "monuments": {
+    "title": "Centrally Protected Monuments",
+    "subtitle": "Explore the 40 historical sites, temples, forts, and ruins under Puri Circle jurisdiction",
+    "search": "Search by monument name, district, or era...",
+    "all_districts": "All Districts",
+    "all_types": "All Types",
+    "coordinates": "Coordinates",
+    "period": "Period / Era",
+    "locality": "Locality",
+    "district": "District",
+    "notification": "Notification Details",
+    "view_details": "View Details",
+    "no_results": "No monuments found matching your search.",
+    "back_to_list": "Back to Monuments",
+    "description": "Description",
+    "read_more": "Read More",
+    "related_images": "Gallery & Images"
+  },
+  "visitor": {
+    "title": "Visitor Information",
+    "subtitle": "Plan your visit to the monuments under Puri Circle",
+    "hours_title": "General Opening Hours",
+    "hours_desc": "Most monuments are open daily from sunrise to sunset (approx. 6:00 AM to 6:00 PM). Site museums usually close on Fridays.",
+    "ticket_title": "Entry Fees & Ticketing",
+    "ticket_desc_1": "World Heritage Monument (Konark Sun Temple): Indians - ₹40, Foreigners - ₹600.",
+    "ticket_desc_2": "Other ticketed monuments: Indians - ₹25, Foreigners - ₹300.",
+    "ticket_desc_3": "Entry is free for children under the age of 15 years.",
+    "museums_title": "Archaeological Site Museums",
+    "museums_desc": "Puri Circle operates 3 site museums: Konark Museum, Ratnagiri Museum, and Lalitagiri Museum, showcasing priceless antiquities excavated from the respective heritage sites.",
+    "rules_title": "Monument Guidelines",
+    "rule_1": "Do not deface or touch ancient carvings, sculptures, or structures.",
+    "rule_2": "Littering inside the monument premises is strictly prohibited.",
+    "rule_3": "Drone photography requires prior written permission from the Director General, ASI.",
+    "rule_4": "Follow local guidelines regarding footwear and photography inside active temple shrines."
+  },
+  "notices": {
+    "title": "Notices & Tenders",
+    "subtitle": "Latest announcements, circulars, and tender notices from Puri Circle office",
+    "date": "Date",
+    "notice_title": "Notice Title",
+    "category": "Category",
+    "download": "Download File",
+    "item_1_title": "Notice regarding conservation work tender at Barabati Fort, Cuttack.",
+    "item_2_title": "Tender invitation for landscaping and beautification of Ratnagiri site premises.",
+    "item_3_title": "General circular regarding photography guidelines for tourists at Konark Sun Temple.",
+    "item_4_title": "Advisory on entry ticket booking via ASI online ticketing portal (asi.payumoney.com)."
+  },
+  "footer": {
+    "copyright": "© 2026 Archaeological Survey of India, Puri Circle. All Rights Reserved.",
+    "gov_india": "Ministry of Culture, Government of India",
+    "address_title": "Contact Office",
+    "address_line1": "Office of the Superintending Archaeologist",
+    "address_line2": "Archaeological Survey of India, Puri Circle",
+    "address_line3": "Puri, Odisha, India",
+    "links_title": "Useful Links",
+    "link_asi": "ASI Headquarters Website",
+    "link_ministry": "Ministry of Culture Portal",
+    "link_odisha": "Odisha Tourism Portal"
+  }
+}
