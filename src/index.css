@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #C4873B;
+  --color-secondary: #8B4513;
+  --color-tertiary: #2C5F2D;
+  --color-neutral: #F5F0E8;
+  --color-accent-blue: #1B4F72;
+  --color-dark-brown: #2D1810;
+  
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Noto Sans", Inter, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-neutral);
+  color: var(--color-dark-brown);
+}
+
+/* Custom scrollbars for a premium look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F0E8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4873B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B4513;
+}
+
+/* Animations */
+@keyframes marquee {
+  0% { transform: translateX(50vw); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes zoom {
+  0%, 100% { transform: scale(1.05); }
+  50% { transform: scale(1.12); }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+  display: inline-block;
+}
+
+.animate-zoom {
+  animation: zoom 20s ease-in-out infinite;
+}
+
+/* Ticker hover pause */
+.relative:hover .animate-marquee {
+  animation-play-state: paused;
+}

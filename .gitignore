@@ -1,11 +1,37 @@
-# Exclude large PDF primary source document (exceeds GitHub's 100MB limit)
-Puri-New 06 July 2025 Print.pdf
-
-# Exclude OS generated files
-.DS_Store
-Thumbs.db
-
-# Exclude archives and logs
-*.zip
-*.tar.gz
+# Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvsca
+*.njsproj
+*.sln
+*.sw?
+
+# Vite / bundler caches
+.vite
+.nuxt
+.next
+.svelte-kit
+
+# Temporary / Scratch files and screenshots
+*.png
+*.cjs
+*.txt
+*.html
+!index.html

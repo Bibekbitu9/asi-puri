@@ -1,0 +1,168 @@
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Globe, Menu, X } from 'lucide-react';
+
+export default function Header() {
+  const { t, i18n } = useTranslation();
+  const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    setLangMenuOpen(false);
+  };
+
+  const navItems = [
+    { key: 'home', path: '/' },
+    { key: 'monuments', path: '/monuments' }
+  ];
+
+  const currentLangLabel = () => {
+    switch (i18n.language) {
+      case 'hi': return 'हि';
+      case 'od': return 'ଓ';
+      default: return 'EN';
+    }
+  };
+
+  return (
+    <div className="w-full bg-slate-900 text-slate-200">
+      {/* TopAppBar (Sticky Header) */}
+      <header className="bg-gradient-to-r from-slate-800 to-slate-900 border-b border-slate-700 shadow-[0_4px_20px_rgba(0,0,0,0.5)] top-0 z-40 sticky transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-20 items-center">
+            {/* Brand/Logo */}
+            <div className="flex-shrink-0">
+              <Link className="flex items-center gap-2 sm:gap-3" to="/">
+                <img
+                  alt="ASI Puri Circle Logo"
+                  className="h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-full border border-[#C4873B]/30 bg-white p-0.5"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWyb98dUAZQ5Uqkfb9RMCiPybf3oVtTyJPP-OEYw-nqza1PLcZZ6wzPOGYAQV3XoxNkfF_qehF9SSLyamK8fXDPpRB1-S8_kNyP_-9Q2Xla6Pk_ehB2sa6jgT2-VSRynNGOXBpVssCfapY8iFt3lsqgzD3a17S1k4t3Pz-AIPL3Z3ZuRHeojbip6oLEw-hFiNvOFgquex7IZsehaOPDBkk1OasIzdS5yPLJEjUOA07r3f8sf1OoF5RzsXBSTAtZBzWdvlC8DQon2Rr"
+                />
+                <div className="flex flex-col">
+                  <span className="font-sans text-[10px] sm:text-base md:text-lg font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent tracking-tight uppercase leading-tight max-w-[160px] sm:max-w-none">
+                    {t('hero.title')}
+                  </span>
+                  <span className="text-slate-300 text-[9px] sm:text-xs font-bold tracking-widest uppercase">
+                    {t('hero.subtitle')}
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex space-x-1 lg:space-x-4 items-center">
+              {navItems.map(item => {
+                const isActive = location.pathname === item.path;
+                return (
+                  <Link
+                    key={item.key}
+                    className={`font-sans font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full transition-all duration-300 ${
+                      isActive
+                        ? 'bg-amber-500 text-slate-900 shadow-[0_4px_15px_rgba(245,158,11,0.3)]'
+                        : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
+                    }`}
+                    to={item.path}
+                  >
+                    {t(`nav.${item.key}`)}
+                  </Link>
+                );
+              })}
+              <div className="h-6 w-px bg-slate-600 mx-2" />
+              
+              {/* Language Switcher Dropdown */}
+              <div className="relative">
+                <button
+                  aria-label="Language Selector"
+                  className="hover:text-amber-400 transition-colors flex items-center font-bold text-xs bg-slate-800 border border-slate-600 text-slate-200 px-4 py-2 rounded-full shadow-sm hover:bg-slate-700"
+                  onClick={() => setLangMenuOpen(!langMenuOpen)}
+                >
+                  <Globe className="w-3.5 h-3.5 mr-1" />
+                  {currentLangLabel()}
+                </button>
+                {langMenuOpen && (
+                  <div className="absolute right-0 mt-3 w-32 rounded-xl shadow-xl bg-slate-800 border border-slate-600 backdrop-blur-xl z-50 overflow-hidden">
+                    <div className="py-1" role="menu">
+                      <button
+                        className="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+                        onClick={() => changeLanguage('en')}
+                      >
+                        English (EN)
+                      </button>
+                      <button
+                        className="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+                        onClick={() => changeLanguage('hi')}
+                      >
+                        हिंदी (HI)
+                      </button>
+                      <button
+                        className="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+                        onClick={() => changeLanguage('od')}
+                      >
+                        ଓଡ଼ିଆ (OD)
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </nav>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center gap-3">
+              {/* Mobile Lang Button */}
+              <div className="relative">
+                <button
+                  className="flex items-center text-xs font-bold bg-slate-800 border border-slate-600 text-slate-200 px-3 py-2 rounded-full shadow-sm"
+                  onClick={() => setLangMenuOpen(!langMenuOpen)}
+                >
+                  <Globe className="w-3.5 h-3.5 mr-1" />
+                  {currentLangLabel()}
+                </button>
+                {langMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-28 rounded-xl shadow-xl bg-slate-800 border border-slate-600 z-50 overflow-hidden">
+                    <div className="py-1">
+                      <button className="w-full text-left px-4 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400" onClick={() => changeLanguage('en')}>EN</button>
+                      <button className="w-full text-left px-4 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400" onClick={() => changeLanguage('hi')}>हि</button>
+                      <button className="w-full text-left px-4 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400" onClick={() => changeLanguage('od')}>ଓ</button>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <button
+                className="text-slate-300 hover:text-amber-400 p-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-slate-900/95 backdrop-blur-xl border-t border-slate-700 px-4 pt-3 pb-5 space-y-2 shadow-xl transition-all duration-300">
+            {navItems.map(item => {
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.key}
+                  className={`block px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-widest ${
+                    isActive
+                      ? 'bg-amber-500 text-slate-900 shadow-md'
+                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                  }`}
+                  to={item.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t(`nav.${item.key}`)}
+                </Link>
+              );
+            })}
+          </div>
+        )}
+      </header>
+    </div>
+  );
+}
