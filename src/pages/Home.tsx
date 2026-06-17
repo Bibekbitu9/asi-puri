@@ -2,9 +2,33 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Landmark, Sun, Castle, Compass, Activity, BookOpen, Users } from 'lucide-react';
 import { Image } from '@unpic/react';
-import { motion } from 'framer-motion';
+import { motion, useInView, animate } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import SEO from '../components/SEO';
 import monumentsData from '../data/monuments.json';
+
+function AnimatedCounter({ from, to }: { from: number; to: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    if (!inView) return;
+
+    const controls = animate(from, to, {
+      duration: 1.5,
+      ease: "easeOut",
+      onUpdate(value) {
+        element.textContent = Math.round(value).toString();
+      },
+    });
+
+    return () => controls.stop();
+  }, [from, to, inView]);
+
+  return <span ref={ref}>{from}</span>;
+}
 
 export default function Home() {
   const { t, i18n } = useTranslation();
@@ -184,7 +208,9 @@ export default function Home() {
               className="text-center p-6 bg-white rounded-2xl shadow-sm border border-slate-200"
             >
               <Activity className="w-8 h-8 mx-auto text-amber-600 mb-4" />
-              <div className="text-4xl font-bold text-slate-900 mb-2">40</div>
+              <div className="text-4xl font-bold text-slate-900 mb-2">
+                <AnimatedCounter from={1} to={40} />
+              </div>
               <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('home.stats_monuments')}</div>
             </motion.div>
             <motion.div 
@@ -192,7 +218,9 @@ export default function Home() {
               className="text-center p-6 bg-white rounded-2xl shadow-sm border border-slate-200"
             >
               <BookOpen className="w-8 h-8 mx-auto text-amber-600 mb-4" />
-              <div className="text-4xl font-bold text-slate-900 mb-2">3</div>
+              <div className="text-4xl font-bold text-slate-900 mb-2">
+                <AnimatedCounter from={1} to={3} />
+              </div>
               <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('home.stats_museums')}</div>
             </motion.div>
             <motion.div 
@@ -200,7 +228,9 @@ export default function Home() {
               className="text-center p-6 bg-white rounded-2xl shadow-sm border border-slate-200"
             >
               <MapPin className="w-8 h-8 mx-auto text-amber-600 mb-4" />
-              <div className="text-4xl font-bold text-slate-900 mb-2">15</div>
+              <div className="text-4xl font-bold text-slate-900 mb-2">
+                <AnimatedCounter from={1} to={15} />
+              </div>
               <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('home.stats_districts')}</div>
             </motion.div>
             <motion.div 
@@ -208,7 +238,9 @@ export default function Home() {
               className="text-center p-6 bg-white rounded-2xl shadow-sm border border-slate-200"
             >
               <Users className="w-8 h-8 mx-auto text-amber-600 mb-4" />
-              <div className="text-4xl font-bold text-slate-900 mb-2">4</div>
+              <div className="text-4xl font-bold text-slate-900 mb-2">
+                <AnimatedCounter from={1} to={4} />
+              </div>
               <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('home.stats_subcircles')}</div>
             </motion.div>
           </div>
