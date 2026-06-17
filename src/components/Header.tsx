@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Globe, Menu, X } from 'lucide-react';
+import { Image } from '@unpic/react';
 
 export default function Header() {
   const { t, i18n } = useTranslation();
@@ -36,10 +37,13 @@ export default function Header() {
             {/* Brand/Logo */}
             <div className="flex-shrink-0">
               <Link className="flex items-center gap-2 sm:gap-3" to="/">
-                <img
+                <Image
                   alt="ASI Puri Circle Logo"
-                  className="h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-full border border-[#C4873B]/30 bg-white p-0.5"
+                  className="h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-full border border-[#C4873B]/30 bg-white p-0.5 flex-shrink-0"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWyb98dUAZQ5Uqkfb9RMCiPybf3oVtTyJPP-OEYw-nqza1PLcZZ6wzPOGYAQV3XoxNkfF_qehF9SSLyamK8fXDPpRB1-S8_kNyP_-9Q2Xla6Pk_ehB2sa6jgT2-VSRynNGOXBpVssCfapY8iFt3lsqgzD3a17S1k4t3Pz-AIPL3Z3ZuRHeojbip6oLEw-hFiNvOFgquex7IZsehaOPDBkk1OasIzdS5yPLJEjUOA07r3f8sf1OoF5RzsXBSTAtZBzWdvlC8DQon2Rr"
+                  layout="fixed"
+                  width={56}
+                  height={56}
                 />
                 <div className="flex flex-col">
                   <span className="font-sans text-[10px] sm:text-base md:text-lg font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent tracking-tight uppercase leading-tight max-w-[160px] sm:max-w-none">

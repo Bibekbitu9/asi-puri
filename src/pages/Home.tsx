@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin, Landmark, Sun, Castle, Compass } from 'lucide-react';
+import { ArrowRight, MapPin, Landmark, Sun, Castle, Compass, Activity, BookOpen, Users } from 'lucide-react';
+import { Image } from '@unpic/react';
+import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 import monumentsData from '../data/monuments.json';
 
 export default function Home() {
@@ -45,12 +48,25 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full bg-slate-200 text-slate-800">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="w-full bg-slate-200 text-slate-800"
+    >
+      <SEO title={t('nav.home') || 'Home'} />
       {/* Hero Section */}
-      <section 
-        className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: 'url("/images/(4) The Ancient Monument of the Black Pagoda/2.JPG")' }}
-      >
+      <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        {/* Background Image using unpic for optimization */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/(4) The Ancient Monument of the Black Pagoda/2.JPG"
+            layout="fullWidth"
+            fetchPriority="high"
+            className="object-cover w-full h-full"
+            alt="Konark Sun Temple Hero Image"
+          />
+        </div>
         {/* Background Overlay */}
         <div className="absolute inset-0 bg-slate-900/60 z-10 mix-blend-multiply"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-200 via-slate-200/40 to-transparent z-10"></div>
@@ -58,16 +74,36 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative z-20 text-center px-4 max-w-5xl mx-auto flex flex-col items-center">
-          <h1 className="font-sans text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4 drop-shadow-2xl leading-tight tracking-tight">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="font-sans text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4 drop-shadow-2xl leading-tight tracking-tight"
+          >
             {t('hero.title')}
-          </h1>
-          <h2 className="font-sans text-2xl md:text-3xl bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent font-bold mb-8 tracking-wide drop-shadow-md">
+          </motion.h1>
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="font-sans text-2xl md:text-3xl bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent font-bold mb-8 tracking-wide drop-shadow-md"
+          >
             {t('hero.subtitle')}
-          </h2>
-          <p className="text-slate-200 text-lg md:text-xl font-medium max-w-2xl mx-auto mb-10 drop-shadow-lg">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            className="text-slate-200 text-lg md:text-xl font-medium max-w-2xl mx-auto mb-10 drop-shadow-lg"
+          >
             {t('hero.tagline')}
-          </p>
-          <div className="flex gap-4">
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 }}
+            className="flex gap-4"
+          >
             <Link
               className="bg-gradient-to-r from-amber-600 to-orange-700 hover:from-amber-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-bold transition-all duration-300 shadow-[0_8px_30px_rgba(217,119,6,0.3)] flex items-center gap-2 uppercase text-xs tracking-widest"
               to="/monuments"
@@ -75,7 +111,7 @@ export default function Home() {
               {t('hero.explore')}
               <ArrowRight className="w-4 h-4 animate-pulse" />
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -85,7 +121,13 @@ export default function Home() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-br from-amber-600/5 via-rose-600/5 to-transparent rounded-full blur-3xl pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6"
+            >
               <div className="flex items-center gap-3">
                 <div className="h-px w-12 bg-amber-600" />
                 <span className="text-amber-700 font-bold uppercase tracking-widest text-xs">
@@ -101,22 +143,74 @@ export default function Home() {
               <p className="text-slate-700 text-sm leading-relaxed text-justify">
                 {t('home.intro_p2')}
               </p>
-            </div>
+            </motion.div>
             
-            <div className="relative">
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
+            >
               <div className="absolute -inset-4 bg-gradient-to-r from-amber-400 to-orange-500 opacity-20 blur-xl rounded-2xl transform rotate-3" />
-              <img
+              <Image
                 alt="Shri Jagannath Temple"
                 className="relative rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.15)] object-cover w-full h-[450px] border border-slate-300"
                 src="/images/(1) Shri Jagannath Temple/1.jpg"
+                layout="fullWidth"
+                loading="lazy"
+                background="auto"
               />
               {/* Floating Badge */}
-              <div className="absolute -bottom-6 -left-6 bg-slate-100/90 backdrop-blur-md p-6 rounded-2xl shadow-xl max-w-xs border border-slate-300 hidden sm:block">
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="absolute -bottom-6 -left-6 bg-slate-100/90 backdrop-blur-md p-6 rounded-2xl shadow-xl max-w-xs border border-slate-300 hidden sm:block"
+              >
                 <Landmark className="text-amber-600 w-8 h-8 mb-2" />
                 <h3 className="font-sans font-bold text-lg text-slate-900">Heritage Conservation</h3>
                 <p className="text-sm text-slate-700 mt-1">Employing scientific methods to restore ancient stone structures.</p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-slate-100 border-b border-slate-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+              className="text-center p-6 bg-white rounded-2xl shadow-sm border border-slate-200"
+            >
+              <Activity className="w-8 h-8 mx-auto text-amber-600 mb-4" />
+              <div className="text-4xl font-bold text-slate-900 mb-2">40</div>
+              <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('home.stats_monuments')}</div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+              className="text-center p-6 bg-white rounded-2xl shadow-sm border border-slate-200"
+            >
+              <BookOpen className="w-8 h-8 mx-auto text-amber-600 mb-4" />
+              <div className="text-4xl font-bold text-slate-900 mb-2">3</div>
+              <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('home.stats_museums')}</div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
+              className="text-center p-6 bg-white rounded-2xl shadow-sm border border-slate-200"
+            >
+              <MapPin className="w-8 h-8 mx-auto text-amber-600 mb-4" />
+              <div className="text-4xl font-bold text-slate-900 mb-2">15</div>
+              <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('home.stats_districts')}</div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
+              className="text-center p-6 bg-white rounded-2xl shadow-sm border border-slate-200"
+            >
+              <Users className="w-8 h-8 mx-auto text-amber-600 mb-4" />
+              <div className="text-4xl font-bold text-slate-900 mb-2">4</div>
+              <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{t('home.stats_subcircles')}</div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -126,7 +220,12 @@ export default function Home() {
       {/* Featured Monuments Section */}
       <section className="py-24 bg-slate-200 relative" id="monuments">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+          >
             <span className="text-amber-700 font-bold uppercase tracking-widest text-xs block">
               {t('hero.subtitle')}
             </span>
@@ -134,21 +233,35 @@ export default function Home() {
               {t('home.featured_monuments')}
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-orange-600 mx-auto rounded-full" />
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredMonuments.map(m => (
-              <div
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ staggerChildren: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            {featuredMonuments.map((m, index) => (
+              <motion.div
                 key={m.id}
-                className="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-300 transition-all duration-500 shadow-[0_8px_30px_rgb(0,0,0,0.05)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:border-amber-400 hover:-translate-y-2 flex flex-col"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-300 transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.05)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:border-amber-400 flex flex-col"
               >
                 {/* Image */}
                 <div className="h-56 overflow-hidden relative bg-slate-200">
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent z-10" />
-                  <img
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent z-10 pointer-events-none" />
+                  <Image
                     alt={getMonumentName(m)}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-95 group-hover:opacity-100"
                     src={m.images[0] || '/placeholder.png'}
+                    layout="fullWidth"
+                    loading="lazy"
+                    background="auto"
                   />
                   <div className="absolute top-4 right-4 z-20 bg-slate-100/90 border border-slate-300 backdrop-blur-md text-[10px] font-bold px-3 py-1 rounded-full text-amber-700 uppercase tracking-widest">
                     {m.metadata.en?.period?.split(' ')[0] || 'Ancient'}
@@ -178,20 +291,26 @@ export default function Home() {
                     <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="text-center mt-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-center mt-16"
+          >
             <Link
               className="inline-flex items-center justify-center px-8 py-3 border border-amber-300 bg-amber-100 text-amber-700 hover:bg-amber-600 hover:text-white hover:border-amber-600 transition-all duration-300 font-bold uppercase text-xs tracking-widest rounded-full shadow-sm hover:shadow-[0_8px_30px_rgba(217,119,6,0.3)]"
               to="/monuments"
             >
               {t('home.view_all')}
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

@@ -1,11 +1,16 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, MapPin, Calendar, FileText, Compass, AlertCircle } from 'lucide-react';
+import { ArrowLeft, MapPin, Calendar, FileText, Compass, AlertCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Image } from '@unpic/react';
+import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '../components/SEO';
 import monumentsData from '../data/monuments.json';
 
 export default function MonumentDetail() {
   const { id } = useParams<{ id: string }>();
   const { t, i18n } = useTranslation();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const monument = monumentsData.find(m => m.id === Number(id));
 
@@ -30,8 +35,18 @@ export default function MonumentDetail() {
   const description = monument.descriptions[lang === 'od' ? 'en' : lang] || monument.descriptions.en;
   const isOdiaFallback = lang === 'od';
 
+  const paragraphs = description ? description.split('\n\n') : [];
+  const hasLongDescription = paragraphs.length > 2;
+  const visibleParagraphs = isExpanded ? paragraphs : paragraphs.slice(0, 2);
+
   return (
-    <div className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-200 min-h-screen">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
+      className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-200 min-h-screen"
+    >
+      <SEO title={name} description={paragraphs[0]?.substring(0, 150) + '...'} image={monument.images[0]} />
       <div className="max-w-4xl mx-auto space-y-8">
         
         {/* Back Button */}
@@ -55,14 +70,22 @@ export default function MonumentDetail() {
         </div>
 
         {/* Gallery / Main Image */}
-        <div className="bg-slate-100 rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-slate-300 p-2">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1 }}
+          className="bg-slate-100 rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-slate-300 p-2"
+        >
           {monument.images && monument.images.length > 0 ? (
             <div className="space-y-4">
-              <div className="aspect-[16/9] w-full rounded overflow-hidden bg-gray-50">
-                <img
+              <div className="aspect-[16/9] w-full rounded overflow-hidden bg-slate-200">
+                <Image
                   alt={name}
                   className="w-full h-full object-cover"
                   src={monument.images[0]}
+                  layout="fullWidth"
+                  fetchPriority="high"
+                  background="auto"
                 />
               </div>
               
@@ -72,15 +95,17 @@ export default function MonumentDetail() {
                   {monument.images.slice(1, 6).map((img, idx) => (
                     <a
                       key={idx}
-                      className="aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-amber-400 transition-colors block shadow-sm"
+                      className="aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-amber-400 transition-colors block shadow-sm relative bg-slate-200"
                       href={img}
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <img
+                      <Image
                         alt={`${name} thumbnail ${idx + 1}`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                         src={img}
+                        layout="fullWidth"
+                        loading="lazy"
                       />
                     </a>
                   ))}
@@ -92,7 +117,7 @@ export default function MonumentDetail() {
               No images available
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* Details & Metadata Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -168,10 +193,35 @@ export default function MonumentDetail() {
             )}
 
             <div className="font-sans text-sm text-slate-800 leading-relaxed text-justify whitespace-pre-line space-y-4">
-              {description ? (
-                description.split('\n\n').map((para, idx) => (
-                  <p key={idx}>{para}</p>
-                ))
+              {paragraphs.length > 0 ? (
+                <>
+                  <AnimatePresence initial={false}>
+                    {visibleParagraphs.map((para, idx) => (
+                      <motion.p 
+                        key={idx}
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {para}
+                      </motion.p>
+                    ))}
+                  </AnimatePresence>
+                  
+                  {hasLongDescription && (
+                    <button
+                      onClick={() => setIsExpanded(!isExpanded)}
+                      className="mt-4 flex items-center justify-center w-full gap-2 py-3 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-xl font-bold text-xs uppercase tracking-widest transition-colors border border-amber-300"
+                    >
+                      {isExpanded ? (
+                        <>Read Less <ChevronUp className="w-4 h-4" /></>
+                      ) : (
+                        <>Read More <ChevronDown className="w-4 h-4" /></>
+                      )}
+                    </button>
+                  )}
+                </>
               ) : (
                 <p className="text-slate-500 italic font-medium">Detailed description not available.</p>
               )}
@@ -181,6 +231,6 @@ export default function MonumentDetail() {
         </div>
 
       </div>
-    </div>
+    </motion.div>
   );
 }
