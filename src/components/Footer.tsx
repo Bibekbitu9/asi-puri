@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Mail, Share2, MapPin, Phone } from 'lucide-react';
+import { Image } from '@unpic/react';
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -14,10 +15,13 @@ export default function Footer() {
         {/* Brand Information */}
         <div className="flex flex-col items-center max-w-lg text-center">
           <div className="flex items-center gap-3 mb-4">
-            <img
+            <Image
               alt="ASI Logo"
-              className="h-10 w-10 brightness-200 contrast-100 opacity-90 bg-white p-1 rounded-full border border-slate-300 shadow-[0_4px_15px_rgba(0,0,0,0.05)]"
+              className="h-10 w-10 brightness-200 contrast-100 opacity-90 bg-white p-1 rounded-full border border-slate-300 shadow-[0_4px_15px_rgba(0,0,0,0.05)] flex-shrink-0"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWyb98dUAZQ5Uqkfb9RMCiPybf3oVtTyJPP-OEYw-nqza1PLcZZ6wzPOGYAQV3XoxNkfF_qehF9SSLyamK8fXDPpRB1-S8_kNyP_-9Q2Xla6Pk_ehB2sa6jgT2-VSRynNGOXBpVssCfapY8iFt3lsqgzD3a17S1k4t3Pz-AIPL3Z3ZuRHeojbip6oLEw-hFiNvOFgquex7IZsehaOPDBkk1OasIzdS5yPLJEjUOA07r3f8sf1OoF5RzsXBSTAtZBzWdvlC8DQon2Rr"
+              layout="fixed"
+              width={56}
+              height={56}
             />
             <div className="flex flex-col items-start">
               <h3 className="font-sans text-xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent uppercase tracking-wider">

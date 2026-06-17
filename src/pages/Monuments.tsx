@@ -2,6 +2,9 @@ import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Search, MapPin, Calendar, Landmark, ArrowUpDown } from 'lucide-react';
+import { Image } from '@unpic/react';
+import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 import monumentsData from '../data/monuments.json';
 
 export default function Monuments() {
@@ -75,7 +78,13 @@ export default function Monuments() {
   );
 
   return (
-    <div className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-200 min-h-screen">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-200 min-h-screen"
+    >
+      <SEO title={t('nav.monuments') || 'Monuments'} />
       <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Header */}
@@ -136,19 +145,31 @@ export default function Monuments() {
 
         {/* Monuments Directory Grid */}
         {paginatedMonuments.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {paginatedMonuments.map(m => (
-              <div
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ staggerChildren: 0.05 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {paginatedMonuments.map((m, index) => (
+              <motion.div
                 key={m.id}
-                className="bg-slate-100 rounded-2xl overflow-hidden border border-slate-300 shadow-[0_4px_20px_rgb(0,0,0,0.05)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:border-amber-400 hover:-translate-y-1 transition-all duration-300 flex flex-col group"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+                whileHover={{ y: -4 }}
+                className="bg-slate-100 rounded-2xl overflow-hidden border border-slate-300 shadow-[0_4px_20px_rgb(0,0,0,0.05)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:border-amber-400 transition-all duration-300 flex flex-col group"
               >
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-slate-200">
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent z-10 opacity-60" />
-                  <img
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent z-10 opacity-60 pointer-events-none" />
+                  <Image
                     alt={getMonumentName(m)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     src={m.images[0] || '/placeholder.png'}
+                    layout="fullWidth"
+                    loading="lazy"
+                    background="auto"
                   />
                   <div className="absolute top-3 left-3 bg-slate-100/90 backdrop-blur-md text-amber-700 border border-slate-300 text-[10px] font-extrabold px-2 py-1 rounded shadow-sm z-20">
                     #{m.id}
@@ -183,9 +204,9 @@ export default function Monuments() {
                     {t('monuments.view_details')}
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         ) : (
           <div className="text-center bg-slate-100 rounded-2xl p-16 border border-slate-300 shadow-[0_4px_20px_rgb(0,0,0,0.05)]">
             <Landmark className="w-16 h-16 text-slate-400 mx-auto mb-4" />
@@ -218,6 +239,6 @@ export default function Monuments() {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
