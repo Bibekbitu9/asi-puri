@@ -76,133 +76,137 @@ export default function Home() {
     >
       <SEO title={t('nav.home') || 'Home'} />
       
-      {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-[var(--color-neutral)] pt-20 pb-12">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%232E2C29\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
+      {/* Bento Grid Hero Section */}
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center bg-[var(--color-neutral)] pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        {/* Main Bento Container */}
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-4 md:gap-5 h-auto md:h-[600px] lg:h-[700px]">
           
-          {/* Text Content (Left Side) */}
-          <div className="col-span-1 lg:col-span-6 flex flex-col items-start text-left space-y-6 relative z-40 pt-10 lg:pt-0">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white shadow-sm border border-[var(--color-muted-gold)]/30 text-[var(--color-primary)] font-bold text-[10px] uppercase tracking-[0.2em]"
-            >
-              <Landmark className="w-4 h-4" />
-              <span>{t('hero.subtitle') || 'Odisha Heritage'}</span>
-            </motion.div>
+          {/* Cell 1: Main Hero (Spans 3 cols, 2 rows) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="col-span-1 md:col-span-3 md:row-span-2 relative rounded-[2rem] overflow-hidden group shadow-sm flex flex-col justify-end p-6 sm:p-10 min-h-[400px] md:min-h-0"
+          >
+            {/* Background Image */}
+            <Image
+              src="/images/(4) The Ancient Monument of the Black Pagoda/2.JPG"
+              layout="fullWidth"
+              fetchPriority="high"
+              className="absolute inset-0 object-cover w-full h-full group-hover:scale-105 transition-transform duration-[3s] ease-out"
+              alt="Konark Sun Temple"
+            />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a100c]/90 via-[#1a100c]/30 to-transparent" />
             
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            >
-              <h1 className="font-serif text-5xl sm:text-6xl lg:text-[4.2rem] text-[var(--color-dark-stone)] leading-[1.1] tracking-tight mb-2 drop-shadow-sm">
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[#A8451A] pb-2">
+            {/* Content Overlay */}
+            <div className="relative z-10 w-full">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 font-bold text-[10px] uppercase tracking-[0.2em] mb-6"
+              >
+                <Landmark className="w-3.5 h-3.5 text-[var(--color-primary)]" />
+                <span>{t('hero.subtitle') || 'Odisha Heritage'}</span>
+              </motion.div>
+              
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] text-white leading-[1.05] tracking-tight max-w-3xl drop-shadow-xl"
+              >
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">
                   {t('hero.title')?.split(' ')[0] || 'Explore'}
                 </span>
-                <span className="block text-[var(--color-dark-stone)]">
+                <span className="block text-[var(--color-primary)]">
                   {t('hero.title')?.split(' ').slice(1).join(' ') || 'Ancient Wonders'}
                 </span>
-              </h1>
-            </motion.div>
+              </motion.h1>
+            </div>
+          </motion.div>
 
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="text-[var(--color-dark-stone)]/70 text-base sm:text-lg font-medium max-w-md leading-relaxed border-l-2 border-[var(--color-primary)]/50 pl-4"
-            >
-              {t('hero.tagline') || 'Experience the architectural marvels of the 13th-century Sun Temple and other ancient monuments.'}
-            </motion.p>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-wrap items-center gap-6 pt-2"
-            >
-              <Link
-                className="group relative overflow-hidden bg-[var(--color-primary)] text-white px-8 py-4 rounded-full font-bold transition-all duration-300 shadow-[0_8px_30px_rgba(226,122,63,0.3)] hover:shadow-[0_8px_40px_rgba(226,122,63,0.5)] hover:-translate-y-1 flex items-center gap-3 uppercase text-[10px] tracking-[0.2em]"
-                to="/monuments"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  {t('hero.explore') || 'Explore Now'}
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></div>
-              </Link>
-              
-              <a href="#about" className="group flex items-center gap-3 font-bold text-[var(--color-dark-stone)] text-[10px] uppercase tracking-[0.2em] hover:text-[var(--color-primary)] transition-colors">
-                <div className="w-12 h-12 rounded-full bg-white shadow-sm border border-[var(--color-muted-gold)]/20 flex items-center justify-center group-hover:border-[var(--color-primary)] transition-colors">
-                  <ArrowRight className="w-4 h-4 transform rotate-90 text-[var(--color-primary)] transition-transform group-hover:translate-y-1" />
-                </div>
-                Learn More
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Image Composition (Right Side) */}
-          <div className="col-span-1 lg:col-span-6 relative h-[400px] sm:h-[500px] lg:h-[550px] w-full flex items-center justify-end mt-10 lg:mt-0 z-10">
+          {/* Cell 2: Stats Bento (Top Right) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="col-span-1 md:col-span-1 md:row-span-1 bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 flex flex-col justify-center relative overflow-hidden group hover:border-[var(--color-muted-gold)] transition-colors min-h-[150px]"
+          >
+            <div className="absolute -right-4 -top-4 w-24 h-24 bg-[var(--color-primary)]/5 rounded-full blur-2xl group-hover:bg-[var(--color-primary)]/10 transition-colors" />
             
-            {/* Main arched image */}
-            <motion.div 
-              style={{ y: heroY }}
-              initial={{ opacity: 0, scale: 0.95, x: 20 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-              className="absolute right-0 w-[80%] sm:w-[75%] h-[95%] rounded-t-full rounded-b-[2.5rem] overflow-hidden shadow-2xl border-8 border-white z-10"
-            >
-              <Image
-                src="/images/(4) The Ancient Monument of the Black Pagoda/2.JPG"
-                layout="fullWidth"
-                fetchPriority="high"
-                className="object-cover w-full h-full hover:scale-105 transition-transform duration-[2s]"
-                alt="Konark Sun Temple"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark-stone)]/40 via-transparent to-transparent pointer-events-none" />
-            </motion.div>
-
-            {/* Secondary floating image */}
-            <motion.div 
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: "easeOut", delay: 0.8 }}
-              className="absolute top-[10%] left-[5%] lg:left-[10%] w-[45%] sm:w-[35%] aspect-[3/4] rounded-[2rem] overflow-hidden shadow-xl border-8 border-white z-20"
-            >
-              <Image
-                src="/images/(1) Shri Jagannath Temple/1.jpg"
-                layout="fullWidth"
-                className="object-cover w-full h-full hover:scale-110 transition-transform duration-[2s]"
-                alt="Jagannath Temple"
-              />
-            </motion.div>
-
-            {/* Floating glassmorphic stats card */}
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.2 }}
-              className="absolute bottom-[10%] left-[10%] sm:left-[15%] bg-white/85 backdrop-blur-md p-4 sm:p-5 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-white max-w-[180px] sm:max-w-[220px] z-30"
-            >
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-8 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] flex-shrink-0">
-                  <Sun className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-[9px] font-bold text-[var(--color-primary)] tracking-[0.2em] uppercase">Built In</div>
-                  <div className="font-serif font-bold text-[var(--color-dark-stone)] text-sm sm:text-base">13th Century</div>
-                </div>
+            <div className="flex items-center gap-4 mb-3 relative z-10">
+              <div className="w-10 h-10 rounded-full bg-[var(--color-neutral)] flex items-center justify-center text-[var(--color-primary)] border border-[var(--color-muted-gold)]/30">
+                <Sun className="w-5 h-5" />
               </div>
-              <p className="text-[9px] sm:text-[10px] text-[var(--color-dark-stone)]/70 font-medium leading-relaxed">
-                UNESCO World Heritage Site located on the eastern shores.
-              </p>
-            </motion.div>
+              <div>
+                <div className="text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase">Era</div>
+                <div className="font-serif font-bold text-[var(--color-dark-stone)] text-lg">13th Century</div>
+              </div>
+            </div>
+            <p className="text-[11px] text-slate-500 font-medium leading-relaxed relative z-10">
+              UNESCO World Heritage Site located on the eastern shores.
+            </p>
+          </motion.div>
 
-          </div>
+          {/* Cell 3: Secondary Image Bento (Bottom Right) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="col-span-1 md:col-span-1 md:row-span-2 relative rounded-[2rem] overflow-hidden shadow-sm group min-h-[250px] md:min-h-0"
+          >
+            <Image
+              src="/images/(1) Shri Jagannath Temple/1.jpg"
+              layout="fullWidth"
+              className="absolute inset-0 object-cover w-full h-full group-hover:scale-110 transition-transform duration-[3s] ease-out"
+              alt="Jagannath Temple"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark-stone)]/60 to-transparent" />
+            <div className="absolute bottom-6 left-6 text-white">
+              <div className="text-[10px] font-bold tracking-[0.1em] uppercase text-white/80 mb-1">Puri</div>
+              <div className="font-serif font-bold text-xl">Jagannath Temple</div>
+            </div>
+          </motion.div>
+
+          {/* Cell 4: Tagline Bento (Bottom Left) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="col-span-1 md:col-span-2 md:row-span-1 bg-[#2D1810] rounded-[2rem] p-6 sm:p-8 shadow-sm flex items-center relative overflow-hidden group min-h-[150px]"
+          >
+            <div className="absolute inset-0 opacity-10 bg-[url('/pattern.png')] mix-blend-overlay" />
+            <div className="w-1.5 h-full bg-[var(--color-primary)] rounded-full mr-6 flex-shrink-0" />
+            <p className="text-white/90 text-sm sm:text-base md:text-lg font-medium leading-relaxed font-sans max-w-lg">
+              {t('hero.tagline') || 'Experience the architectural marvels of the 13th-century Sun Temple and other ancient monuments.'}
+            </p>
+          </motion.div>
+
+          {/* Cell 5: Action CTA Bento (Bottom Middle) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="col-span-1 md:col-span-1 md:row-span-1 min-h-[150px]"
+          >
+            <Link
+              to="/monuments"
+              className="w-full h-full bg-[var(--color-primary)] rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between items-start group relative overflow-hidden shadow-sm hover:shadow-[0_8px_30px_rgba(226,122,63,0.4)] transition-all duration-300"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white backdrop-blur-md transition-transform duration-500 group-hover:scale-110 group-hover:bg-white group-hover:text-[var(--color-primary)]">
+                <ArrowRight className="w-5 h-5 transform -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+              </div>
+              <div className="mt-4">
+                <span className="block font-bold text-white text-xs uppercase tracking-[0.2em] mb-1 opacity-80">Discover</span>
+                <span className="block font-serif text-white text-2xl font-bold leading-none">Explore Now</span>
+              </div>
+            </Link>
+          </motion.div>
+
         </div>
       </section>
 
