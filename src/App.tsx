@@ -10,10 +10,12 @@ const Home = lazy(() => import('./pages/Home'));
 const Monuments = lazy(() => import('./pages/Monuments'));
 const MonumentDetail = lazy(() => import('./pages/MonumentDetail'));
 
+import KonarkLoader from './components/KonarkLoader';
+
 // Loading Fallback Component
 const LoadingFallback = () => (
   <div className="flex-grow flex items-center justify-center min-h-[50vh]">
-    <div className="w-12 h-12 border-4 border-amber-200 border-t-amber-600 rounded-full animate-spin"></div>
+    <KonarkLoader className="w-20 h-20" />
   </div>
 );
 

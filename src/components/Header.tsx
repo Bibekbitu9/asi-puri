@@ -29,9 +29,9 @@ export default function Header() {
   };
 
   return (
-    <div className="w-full bg-slate-900 text-slate-200">
+    <div className="w-full bg-[#4A1C0A] text-[#F8F5F0]">
       {/* TopAppBar (Sticky Header) */}
-      <header className="bg-gradient-to-r from-slate-800 to-slate-900 border-b border-slate-700 shadow-[0_4px_20px_rgba(0,0,0,0.5)] top-0 z-40 sticky transition-all duration-300">
+      <header className="bg-gradient-to-r from-[#7A2A10] via-[#A8451A] to-[#D46A25] border-b border-[#C19A6B]/30 shadow-[0_4px_20px_rgba(0,0,0,0.5)] top-0 z-40 sticky transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
             {/* Brand/Logo */}
@@ -65,8 +65,8 @@ export default function Header() {
                     key={item.key}
                     className={`font-sans font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full transition-all duration-300 ${
                       isActive
-                        ? 'bg-amber-500 text-slate-900 shadow-[0_4px_15px_rgba(245,158,11,0.3)]'
-                        : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
+                        ? 'bg-[#C15C20] text-white shadow-[0_4px_15px_rgba(193,92,32,0.4)]'
+                        : 'text-[#E6D8B8] hover:text-white hover:bg-[#8C3310]/50'
                     }`}
                     to={item.path}
                   >
@@ -74,35 +74,35 @@ export default function Header() {
                   </Link>
                 );
               })}
-              <div className="h-6 w-px bg-slate-600 mx-2" />
+              <div className="h-6 w-px bg-[#8C3310] mx-2" />
               
               {/* Language Switcher Dropdown */}
               <div className="relative">
                 <button
                   aria-label="Language Selector"
-                  className="hover:text-amber-400 transition-colors flex items-center font-bold text-xs bg-slate-800 border border-slate-600 text-slate-200 px-4 py-2 rounded-full shadow-sm hover:bg-slate-700"
+                  className="hover:text-white transition-colors flex items-center font-bold text-xs bg-[#4A1C0A] border border-[#8C3310] text-[#F8F5F0] px-4 py-2 rounded-full shadow-sm hover:bg-[#8C3310]"
                   onClick={() => setLangMenuOpen(!langMenuOpen)}
                 >
                   <Globe className="w-3.5 h-3.5 mr-1" />
                   {currentLangLabel()}
                 </button>
                 {langMenuOpen && (
-                  <div className="absolute right-0 mt-3 w-32 rounded-xl shadow-xl bg-slate-800 border border-slate-600 backdrop-blur-xl z-50 overflow-hidden">
+                  <div className="absolute right-0 mt-3 w-32 rounded-xl shadow-xl bg-[#4A1C0A] border border-[#8C3310] backdrop-blur-xl z-50 overflow-hidden">
                     <div className="py-1" role="menu">
                       <button
-                        className="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+                        className="w-full text-left px-4 py-2.5 text-xs font-semibold text-[#F8F5F0] hover:bg-[#8C3310] hover:text-[#E6D8B8] transition-colors"
                         onClick={() => changeLanguage('en')}
                       >
                         English (EN)
                       </button>
                       <button
-                        className="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+                        className="w-full text-left px-4 py-2.5 text-xs font-semibold text-[#F8F5F0] hover:bg-[#8C3310] hover:text-[#E6D8B8] transition-colors"
                         onClick={() => changeLanguage('hi')}
                       >
                         हिंदी (HI)
                       </button>
                       <button
-                        className="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+                        className="w-full text-left px-4 py-2.5 text-xs font-semibold text-[#F8F5F0] hover:bg-[#8C3310] hover:text-[#E6D8B8] transition-colors"
                         onClick={() => changeLanguage('od')}
                       >
                         ଓଡ଼ିଆ (OD)
@@ -118,24 +118,24 @@ export default function Header() {
               {/* Mobile Lang Button */}
               <div className="relative">
                 <button
-                  className="flex items-center text-xs font-bold bg-slate-800 border border-slate-600 text-slate-200 px-3 py-2 rounded-full shadow-sm"
+                  className="flex items-center text-xs font-bold bg-[#4A1C0A] border border-[#8C3310] text-[#F8F5F0] px-3 py-2 rounded-full shadow-sm"
                   onClick={() => setLangMenuOpen(!langMenuOpen)}
                 >
                   <Globe className="w-3.5 h-3.5 mr-1" />
                   {currentLangLabel()}
                 </button>
                 {langMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-28 rounded-xl shadow-xl bg-slate-800 border border-slate-600 z-50 overflow-hidden">
+                  <div className="absolute right-0 mt-2 w-28 rounded-xl shadow-xl bg-[#4A1C0A] border border-[#8C3310] z-50 overflow-hidden">
                     <div className="py-1">
-                      <button className="w-full text-left px-4 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400" onClick={() => changeLanguage('en')}>EN</button>
-                      <button className="w-full text-left px-4 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400" onClick={() => changeLanguage('hi')}>हि</button>
-                      <button className="w-full text-left px-4 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-amber-400" onClick={() => changeLanguage('od')}>ଓ</button>
+                      <button className="w-full text-left px-4 py-2 text-xs font-semibold text-[#F8F5F0] hover:bg-[#8C3310] hover:text-[#E6D8B8]" onClick={() => changeLanguage('en')}>EN</button>
+                      <button className="w-full text-left px-4 py-2 text-xs font-semibold text-[#F8F5F0] hover:bg-[#8C3310] hover:text-[#E6D8B8]" onClick={() => changeLanguage('hi')}>हि</button>
+                      <button className="w-full text-left px-4 py-2 text-xs font-semibold text-[#F8F5F0] hover:bg-[#8C3310] hover:text-[#E6D8B8]" onClick={() => changeLanguage('od')}>ଓ</button>
                     </div>
                   </div>
                 )}
               </div>
               <button
-                className="text-slate-300 hover:text-amber-400 p-2"
+                className="text-[#F8F5F0] hover:text-[#E6D8B8] p-2"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -146,7 +146,7 @@ export default function Header() {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-slate-900/95 backdrop-blur-xl border-t border-slate-700 px-4 pt-3 pb-5 space-y-2 shadow-xl transition-all duration-300">
+          <div className="md:hidden bg-[#4A1C0A]/95 backdrop-blur-xl border-t border-[#8C3310] px-4 pt-3 pb-5 space-y-2 shadow-xl transition-all duration-300">
             {navItems.map(item => {
               const isActive = location.pathname === item.path;
               return (
@@ -154,8 +154,8 @@ export default function Header() {
                   key={item.key}
                   className={`block px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-widest ${
                     isActive
-                      ? 'bg-amber-500 text-slate-900 shadow-md'
-                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                      ? 'bg-[#C15C20] text-white shadow-md'
+                      : 'text-[#E6D8B8] hover:bg-[#8C3310] hover:text-white'
                   }`}
                   to={item.path}
                   onClick={() => setMobileMenuOpen(false)}

@@ -6,9 +6,9 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-gradient-to-r from-slate-900 to-slate-800 text-slate-100 pt-16 pb-8 border-t border-slate-700 relative overflow-hidden">
+    <footer className="bg-gradient-to-r from-[#7A2A10] via-[#A8451A] to-[#D46A25] text-[#F8F5F0] pt-16 pb-8 border-t border-[#C19A6B]/30 relative overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none transform translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute top-0 right-0 w-64 h-64 bg-[#C15C20]/20 rounded-full blur-3xl pointer-events-none transform translate-x-1/2 -translate-y-1/2" />
 
       <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-8 mb-8 relative z-10 px-4 sm:px-6 lg:px-8">
 
@@ -29,15 +29,15 @@ export default function Footer() {
               </h3>
             </div>
           </div>
-          <p className="text-sm leading-relaxed text-slate-300 max-w-2xl">
+          <p className="text-sm leading-relaxed text-[#E6D8B8] max-w-2xl">
             {t('home.intro_p1')}
           </p>
         </div>
       </div>
 
       {/* Bottom Rights */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-700/50 flex justify-center items-center text-center relative z-10">
-        <p className="text-xs text-slate-400 font-medium">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-[#E6D8B8]/20 flex justify-center items-center text-center relative z-10">
+        <p className="text-xs text-[#E6D8B8]/80 font-medium">
           &copy; {new Date().getFullYear()} {t('hero.title')}. All rights reserved.
         </p>
       </div>

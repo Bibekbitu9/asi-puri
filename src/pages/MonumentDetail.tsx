@@ -16,10 +16,10 @@ export default function MonumentDetail() {
 
   if (!monument) {
     return (
-      <div className="py-20 text-center min-h-screen bg-slate-200 flex flex-col justify-center items-center">
-        <AlertCircle className="w-16 h-16 text-amber-500 mb-4" />
-        <h1 className="font-sans text-2xl font-bold text-slate-900 mb-4">Monument Not Found</h1>
-        <Link className="text-amber-600 hover:text-amber-700 hover:underline font-bold" to="/monuments">
+      <div className="py-20 text-center min-h-screen bg-[var(--color-neutral)] flex flex-col justify-center items-center">
+        <AlertCircle className="w-16 h-16 text-[var(--color-primary)] mb-4" />
+        <h1 className="font-sans text-2xl font-bold text-[var(--color-dark-stone)] mb-4">Monument Not Found</h1>
+        <Link className="text-[var(--color-primary)] hover:text-[var(--color-muted-gold)] hover:underline font-bold" to="/monuments">
           {t('monuments.back_to_list')}
         </Link>
       </div>
@@ -27,7 +27,6 @@ export default function MonumentDetail() {
   }
 
   const lang = i18n.language as 'en' | 'hi' | 'od';
-
   const name = monument.names[lang] || monument.names.en;
 
   // Metadata translation fallback logic
@@ -44,14 +43,14 @@ export default function MonumentDetail() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
-      className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-200 min-h-screen"
+      className="py-12 px-4 sm:px-6 lg:px-8 bg-[var(--color-neutral)] min-h-screen"
     >
       <SEO title={name} description={paragraphs[0]?.substring(0, 150) + '...'} image={monument.images[0]} />
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-5xl mx-auto space-y-10">
         
         {/* Back Button */}
         <Link
-          className="inline-flex items-center gap-2 text-xs font-bold text-amber-700 hover:text-amber-800 transition-colors uppercase tracking-widest bg-slate-100 py-2 px-4 rounded-full shadow-sm border border-slate-300 hover:bg-slate-200 w-fit"
+          className="inline-flex items-center gap-2 text-xs font-bold text-[var(--color-primary)] hover:text-[var(--color-muted-gold)] transition-colors uppercase tracking-[0.2em] bg-white py-3 px-6 rounded-full shadow-sm border border-[var(--color-muted-gold)]/30 hover:shadow-md w-fit"
           to="/monuments"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -60,28 +59,30 @@ export default function MonumentDetail() {
 
         {/* Monument Header */}
         <div className="space-y-4">
-          <span className="font-sans font-bold text-xs uppercase tracking-widest text-amber-800 bg-amber-100 px-3 py-1 rounded-full border border-amber-300 shadow-sm">
+          <span className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-[var(--color-primary)] bg-[var(--color-primary)]/10 px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 shadow-sm">
             Monument #{monument.id}
           </span>
-          <h1 className="font-sans text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight tracking-tight">
+          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-dark-stone)] leading-tight">
             {name}
           </h1>
-          <div className="w-20 h-1 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-muted-gold)] rounded-full" />
         </div>
 
-        {/* Gallery / Main Image */}
+        {/* Gallery Section */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.1 }}
-          className="bg-slate-100 rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-slate-300 p-2"
+          className="bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.05)] border border-[var(--color-muted-gold)]/20 p-3"
         >
           {monument.images && monument.images.length > 0 ? (
             <div className="space-y-4">
-              <div className="aspect-[16/9] w-full rounded overflow-hidden bg-slate-200">
+              {/* Main Hero Image */}
+              <div className="aspect-[21/9] w-full rounded-2xl overflow-hidden bg-slate-200 relative group">
+                <div className="absolute inset-0 bg-[var(--color-dark-stone)]/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 <Image
                   alt={name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   src={monument.images[0]}
                   layout="fullWidth"
                   fetchPriority="high"
@@ -89,110 +90,112 @@ export default function MonumentDetail() {
                 />
               </div>
               
-              {/* Additional Thumbnails */}
+              {/* Masonry Layout for Additional Thumbnails */}
               {monument.images.length > 1 && (
-                <div className="grid grid-cols-5 gap-2 px-1 pb-1">
-                  {monument.images.slice(1, 6).map((img, idx) => (
+                <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 px-1 pb-1">
+                  {monument.images.slice(1).map((img, idx) => (
                     <a
                       key={idx}
-                      className="aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-amber-400 transition-colors block shadow-sm relative bg-slate-200"
+                      className="break-inside-avoid rounded-xl overflow-hidden border border-transparent hover:border-[var(--color-primary)] transition-all duration-300 block shadow-sm relative bg-slate-200 group"
                       href={img}
                       target="_blank"
                       rel="noreferrer"
                     >
                       <Image
-                        alt={`${name} thumbnail ${idx + 1}`}
-                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                        alt={`${name} gallery image ${idx + 1}`}
+                        className="w-full object-cover hover:scale-105 transition-transform duration-700"
                         src={img}
                         layout="fullWidth"
                         loading="lazy"
+                        background="auto"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     </a>
                   ))}
                 </div>
               )}
             </div>
           ) : (
-            <div className="aspect-[16/9] bg-slate-100 flex items-center justify-center text-slate-400 rounded-xl font-semibold">
+            <div className="aspect-[21/9] bg-[var(--color-neutral)] flex items-center justify-center text-[var(--color-dark-stone)] opacity-50 rounded-2xl font-semibold">
               No images available
             </div>
           )}
         </motion.div>
 
         {/* Details & Metadata Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           
           {/* Metadata Card */}
-          <div className="md:col-span-1 bg-slate-100 rounded-2xl p-6 border border-slate-300 shadow-[0_4px_20px_rgb(0,0,0,0.05)] h-fit space-y-6">
-            <h3 className="font-sans text-lg font-bold text-slate-900 border-b border-slate-300 pb-3">
+          <div className="md:col-span-1 bg-white rounded-3xl p-8 border border-[var(--color-muted-gold)]/20 shadow-[0_8px_30px_rgb(0,0,0,0.05)] h-fit space-y-8">
+            <h3 className="font-serif text-2xl font-bold text-[var(--color-dark-stone)] border-b border-[var(--color-muted-gold)]/30 pb-4">
               Quick Facts
             </h3>
             
-            <div className="space-y-5 text-xs font-sans text-slate-800">
+            <div className="space-y-6 text-sm font-sans text-[var(--color-dark-stone)]">
               {meta?.district && (
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-amber-700 font-bold uppercase tracking-widest text-[10px]">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[var(--color-primary)] font-bold uppercase tracking-[0.15em] text-[10px]">
                     <MapPin className="w-4 h-4" />
                     {t('monuments.district')}
                   </div>
-                  <div className="font-semibold pl-6 text-sm">{meta.district}</div>
+                  <div className="font-semibold pl-6">{meta.district}</div>
                 </div>
               )}
               {meta?.locality && (
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-amber-700 font-bold uppercase tracking-widest text-[10px]">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[var(--color-primary)] font-bold uppercase tracking-[0.15em] text-[10px]">
                     <MapPin className="w-4 h-4" />
                     {t('monuments.locality')}
                   </div>
-                  <div className="font-semibold pl-6 text-sm">{meta.locality}</div>
+                  <div className="font-semibold pl-6">{meta.locality}</div>
                 </div>
               )}
               {meta?.period && (
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-amber-700 font-bold uppercase tracking-widest text-[10px]">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[var(--color-primary)] font-bold uppercase tracking-[0.15em] text-[10px]">
                     <Calendar className="w-4 h-4" />
                     {t('monuments.period')}
                   </div>
-                  <div className="font-semibold pl-6 text-sm">{meta.period}</div>
+                  <div className="font-semibold pl-6">{meta.period}</div>
                 </div>
               )}
               {meta?.geo && (
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-amber-700 font-bold uppercase tracking-widest text-[10px]">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[var(--color-primary)] font-bold uppercase tracking-[0.15em] text-[10px]">
                     <Compass className="w-4 h-4" />
                     {t('monuments.coordinates')}
                   </div>
-                  <div className="font-semibold pl-6 break-words">{meta.geo}</div>
+                  <div className="font-semibold pl-6 break-words text-xs">{meta.geo}</div>
                 </div>
               )}
               {meta?.notification && (
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-amber-700 font-bold uppercase tracking-widest text-[10px]">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[var(--color-primary)] font-bold uppercase tracking-[0.15em] text-[10px]">
                     <FileText className="w-4 h-4" />
                     {t('monuments.notification')}
                   </div>
-                  <div className="font-semibold pl-6 text-[10px] leading-relaxed break-words text-slate-600">{meta.notification}</div>
+                  <div className="font-medium pl-6 text-xs leading-relaxed break-words opacity-80">{meta.notification}</div>
                 </div>
               )}
             </div>
           </div>
 
           {/* Description Section */}
-          <div className="md:col-span-2 bg-slate-100 rounded-2xl p-8 border border-slate-300 shadow-[0_4px_20px_rgb(0,0,0,0.05)] space-y-6">
-            <h2 className="font-sans text-xl font-bold text-slate-900 border-b border-slate-300 pb-3">
+          <div className="md:col-span-2 bg-white rounded-3xl p-10 border border-[var(--color-muted-gold)]/20 shadow-[0_8px_30px_rgb(0,0,0,0.05)] space-y-8">
+            <h2 className="font-serif text-3xl font-bold text-[var(--color-dark-stone)] border-b border-[var(--color-muted-gold)]/30 pb-4">
               {t('monuments.description')}
             </h2>
             
             {isOdiaFallback && (
-              <div className="bg-amber-100 border-l-4 border-amber-600 p-4 text-xs text-amber-900 rounded-r-lg flex items-start gap-2 font-semibold shadow-sm">
-                <AlertCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+              <div className="bg-[var(--color-sandstone)]/30 border-l-4 border-[var(--color-primary)] p-5 text-sm text-[var(--color-dark-stone)] rounded-r-xl flex items-start gap-3 font-semibold shadow-sm">
+                <AlertCircle className="w-5 h-5 text-[var(--color-primary)] flex-shrink-0 mt-0.5" />
                 <div>
                   ଓଡ଼ିଆରେ ବିବରଣୀ ଉପଲବ୍ଧ ନାହିଁ । ଇଂରାଜୀ ସଂସ୍କରଣ ପ୍ରଦର୍ଶିତ ହେଉଛି :
                 </div>
               </div>
             )}
 
-            <div className="font-sans text-sm text-slate-800 leading-relaxed text-justify whitespace-pre-line space-y-4">
+            <div className="font-sans text-base text-[var(--color-dark-stone)] opacity-90 leading-loose text-justify whitespace-pre-line space-y-6">
               {paragraphs.length > 0 ? (
                 <>
                   <AnimatePresence initial={false}>
@@ -202,7 +205,7 @@ export default function MonumentDetail() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
                       >
                         {para}
                       </motion.p>
@@ -212,18 +215,18 @@ export default function MonumentDetail() {
                   {hasLongDescription && (
                     <button
                       onClick={() => setIsExpanded(!isExpanded)}
-                      className="mt-4 flex items-center justify-center w-full gap-2 py-3 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-xl font-bold text-xs uppercase tracking-widest transition-colors border border-amber-300"
+                      className="mt-8 flex items-center justify-center w-full gap-2 py-4 bg-[var(--color-neutral)] hover:bg-[var(--color-sandstone)] text-[var(--color-dark-stone)] rounded-xl font-bold text-xs uppercase tracking-[0.2em] transition-colors border border-[var(--color-muted-gold)]/50 shadow-sm"
                     >
                       {isExpanded ? (
-                        <>Read Less <ChevronUp className="w-4 h-4" /></>
+                        <>Read Less <ChevronUp className="w-5 h-5" /></>
                       ) : (
-                        <>Read More <ChevronDown className="w-4 h-4" /></>
+                        <>Read More <ChevronDown className="w-5 h-5" /></>
                       )}
                     </button>
                   )}
                 </>
               ) : (
-                <p className="text-slate-500 italic font-medium">Detailed description not available.</p>
+                <p className="text-[var(--color-muted-gold)] italic font-medium">Detailed description not available.</p>
               )}
             </div>
           </div>
