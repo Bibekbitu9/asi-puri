@@ -6,6 +6,7 @@ import { motion, useInView, animate } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import SEO from '../components/SEO';
 import HeroCarousel from '../components/HeroCarousel';
+import HomeSearchBar from '../components/HomeSearchBar';
 import LatestUpdates from '../components/LatestUpdates';
 import NewsSection from '../components/NewsSection';
 import monumentsData from '../data/monuments.json';
@@ -77,8 +78,11 @@ export default function Home() {
       {/* Hero Carousel Section */}
       <HeroCarousel />
 
+      {/* Global Search Bar Overlay */}
+      <HomeSearchBar />
+
       {/* About Section */}
-      <section className="py-16 md:py-24 bg-[var(--color-neutral)] relative overflow-hidden" id="about">
+      <section className="py-16 md:py-24 bg-[var(--color-neutral)] relative overflow-hidden" id="about-us">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
             <motion.div 
@@ -184,7 +188,7 @@ export default function Home() {
       </section>
 
       {/* Featured Monuments Section - Timeline/Cinematic Layout */}
-      <section className="py-16 md:py-32 bg-[var(--color-neutral)] relative overflow-hidden" id="monuments">
+      <section className="py-16 md:py-32 bg-[var(--color-neutral)] relative overflow-hidden" id="featured-monuments">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

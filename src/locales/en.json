@@ -5,7 +5,10 @@
     "gallery": "Gallery",
     "visitorInfo": "Visitor Info",
     "notices": "Notices",
-    "about": "About Us"
+    "about": "About Us",
+    "updates": "Latest Updates",
+    "news": "News and Events",
+    "featured_monuments": "Featured Monuments"
   },
   "hero": {
     "title": "Archaeological Survey of India",

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Globe, Menu, X } from 'lucide-react';
@@ -16,9 +16,25 @@ export default function Header() {
   };
 
   const navItems = [
-    { key: 'home', path: '/' },
-    { key: 'monuments', path: '/monuments' }
+    { key: 'about', path: '/#about-us' },
+    { key: 'updates', path: '/#latest-updates' },
+    { key: 'news', path: '/#news-press' },
+    { key: 'featured_monuments', path: '/#featured-monuments' }
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (path.startsWith('/#') && location.pathname === '/') {
+      e.preventDefault();
+      const id = path.substring(2);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      setMobileMenuOpen(false);
+    } else {
+      setMobileMenuOpen(false);
+    }
+  };
 
   const currentLangLabel = () => {
     switch (i18n.language) {
@@ -63,7 +79,8 @@ export default function Header() {
                 return (
                   <Link
                     key={item.key}
-                    className={`font-sans font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full transition-all duration-300 ${
+                    onClick={(e) => handleNavClick(e, item.path)}
+                    className={`font-sans font-bold uppercase tracking-widest text-[10px] lg:text-xs px-3 lg:px-4 py-2 rounded-full transition-all duration-300 ${
                       isActive
                         ? 'bg-[#C15C20] text-white shadow-[0_4px_15px_rgba(193,92,32,0.4)]'
                         : 'text-[#E6D8B8] hover:text-white hover:bg-[#8C3310]/50'
@@ -158,7 +175,7 @@ export default function Header() {
                       : 'text-[#E6D8B8] hover:bg-[#8C3310] hover:text-white'
                   }`}
                   to={item.path}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, item.path)}
                 >
                   {t(`nav.${item.key}`)}
                 </Link>

@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Calendar, Landmark, ArrowUpDown } from 'lucide-react';
 import { Image } from '@unpic/react';
 import { motion } from 'framer-motion';
@@ -11,7 +11,8 @@ import monumentsData from '../data/monuments.json';
 
 export default function Monuments() {
   const { t, i18n } = useTranslation();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [sortBy, setSortBy] = useState<'id' | 'name'>('id');
   

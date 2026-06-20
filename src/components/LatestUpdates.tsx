@@ -28,7 +28,7 @@ const updatesData = [
 
 export default function LatestUpdates() {
   return (
-    <section className="py-16 md:py-24 bg-[var(--color-dark-stone)] text-[var(--color-neutral)] relative overflow-hidden" id="updates">
+    <section className="py-16 md:py-24 bg-[var(--color-dark-stone)] text-[var(--color-neutral)] relative overflow-hidden" id="latest-updates">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
