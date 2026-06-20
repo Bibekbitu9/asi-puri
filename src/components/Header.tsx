@@ -46,10 +46,10 @@ export default function Header() {
                   height={56}
                 />
                 <div className="flex flex-col">
-                  <span className="font-sans text-[10px] sm:text-base md:text-lg font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent tracking-tight uppercase leading-tight max-w-[160px] sm:max-w-none">
+                  <span className="font-sans text-[10px] sm:text-sm md:text-base font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent tracking-tight uppercase leading-tight max-w-[160px] sm:max-w-none">
                     {t('hero.title')}
                   </span>
-                  <span className="text-slate-300 text-[9px] sm:text-xs font-bold tracking-widest uppercase">
+                  <span className="text-slate-300 text-[8px] sm:text-[10px] font-bold tracking-widest uppercase">
                     {t('hero.subtitle')}
                   </span>
                 </div>
