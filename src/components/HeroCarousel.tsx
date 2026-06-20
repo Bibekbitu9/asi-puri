@@ -10,12 +10,6 @@ import './HeroCarousel.css';
 // Carousel slides configuration
 const CAROUSEL_SLIDES = [
   {
-    monumentId: 4,
-    shortName: 'Konark Sun Temple',
-    tagline: 'The Black Pagoda',
-    image: '/images/(4) The Ancient Monument of the Black Pagoda/2.JPG',
-  },
-  {
     monumentId: 1,
     shortName: 'Shri Jagannath Temple',
     tagline: 'The Abode of Lord Jagannath',
