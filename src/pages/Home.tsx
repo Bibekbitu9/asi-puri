@@ -6,6 +6,8 @@ import { motion, useInView, animate } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import SEO from '../components/SEO';
 import HeroCarousel from '../components/HeroCarousel';
+import LatestUpdates from '../components/LatestUpdates';
+import NewsSection from '../components/NewsSection';
 import monumentsData from '../data/monuments.json';
 
 function AnimatedCounter({ from, to }: { from: number; to: number }) {
@@ -101,6 +103,20 @@ export default function Home() {
               <p className="text-[var(--color-dark-stone)] opacity-80 text-base leading-relaxed text-justify">
                 {t('home.intro_p2')}
               </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+                <div className="p-6 bg-white/50 backdrop-blur rounded-2xl shadow-sm border border-[var(--color-muted-gold)]/20">
+                  <h3 className="font-serif text-xl font-bold text-[var(--color-primary)] mb-3">Our Mission</h3>
+                  <p className="text-[var(--color-dark-stone)] opacity-80 text-sm leading-relaxed text-justify">
+                    To meticulously preserve, conserve, and research the architectural marvels and archaeological sites of the Puri Circle, safeguarding our shared heritage for future generations.
+                  </p>
+                </div>
+                <div className="p-6 bg-white/50 backdrop-blur rounded-2xl shadow-sm border border-[var(--color-muted-gold)]/20">
+                  <h3 className="font-serif text-xl font-bold text-[var(--color-primary)] mb-3">Our Vision</h3>
+                  <p className="text-[var(--color-dark-stone)] opacity-80 text-sm leading-relaxed text-justify">
+                    A society deeply connected to its roots, where the timeless legacy of Odisha's sandstone temples and historical monuments inspires cultural pride and global appreciation.
+                  </p>
+                </div>
+              </div>
             </motion.div>
             
             <motion.div 
@@ -124,6 +140,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Latest Updates Section */}
+      <LatestUpdates />
+
+      {/* News Section */}
+      <NewsSection />
 
       {/* Stats Section */}
       <section className="py-12 md:py-20 bg-[var(--color-dark-stone)] text-[var(--color-neutral)]">
