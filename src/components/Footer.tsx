@@ -24,7 +24,7 @@ export default function Footer() {
               height={56}
             />
             <div className="flex flex-col items-start">
-              <h3 className="font-sans text-xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent uppercase tracking-wider">
+              <h3 className="font-sans text-[1.25rem] md:text-[1.5rem] font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent uppercase tracking-wider">
                 {t('hero.title')}
               </h3>
             </div>
