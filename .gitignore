@@ -30,8 +30,8 @@ dist-ssr
 .svelte-kit
 
 # Temporary / Scratch files and screenshots
-*.png
-*.cjs
-*.txt
-*.html
-!index.html
+/*.png
+/*.cjs
+/*.txt
+/*.html
+!/index.html
