@@ -81,11 +81,11 @@ export default function MonumentDetail() {
       <SEO title={name} description={paragraphs[0]?.substring(0, 150) + '...'} image={monument.images[0]} />
 
       {/* Cinematic Hero Header Section */}
-      <section className="relative w-full h-[50vh] md:h-[65vh] overflow-hidden bg-[var(--color-dark-stone)]">
+      <section className="relative w-full min-h-[50vh] md:min-h-[65vh] flex flex-col justify-between overflow-hidden bg-[var(--color-dark-stone)] pb-6 gap-6 md:gap-8">
         {/* Main Background Image */}
         <Image
           alt={name}
-          className="w-full h-full object-cover select-none"
+          className="absolute inset-0 w-full h-full object-cover select-none z-0"
           src={monument.images[0]}
           layout="fullWidth"
           fetchPriority="high"
@@ -96,7 +96,7 @@ export default function MonumentDetail() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#2E2C29]/60 via-transparent to-[#2E2C29]/95 z-10" />
 
         {/* Glassmorphic Navbar Overlay */}
-        <div className="absolute top-0 inset-x-0 p-4 md:p-6 flex justify-between items-center z-25">
+        <div className="relative z-25 p-4 md:p-6 flex justify-between items-center w-full max-w-5xl mx-auto">
           <Link
             className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all shadow-lg"
             to="/monuments"
@@ -110,7 +110,7 @@ export default function MonumentDetail() {
         </div>
 
         {/* Bottom Title Content */}
-        <div className="absolute bottom-0 inset-x-0 p-6 md:p-12 z-20">
+        <div className="relative z-20 mt-auto p-6 md:p-12 w-full">
           <div className="max-w-5xl mx-auto space-y-4">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
