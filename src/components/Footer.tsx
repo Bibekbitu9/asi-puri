@@ -16,8 +16,8 @@ export default function Footer() {
         <div className="flex flex-col items-center max-w-lg text-center">
           <div className="flex items-center gap-3 mb-4">
             <Image
-              alt="ASI Logo"
-              className="h-10 w-10 brightness-200 contrast-100 opacity-90 bg-white p-1 rounded-full border border-slate-300 shadow-[0_4px_15px_rgba(0,0,0,0.05)] flex-shrink-0"
+              alt="ASI Puri Circle Logo"
+              className="h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-full border border-[#C4873B]/30 bg-white p-0.5 flex-shrink-0"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWyb98dUAZQ5Uqkfb9RMCiPybf3oVtTyJPP-OEYw-nqza1PLcZZ6wzPOGYAQV3XoxNkfF_qehF9SSLyamK8fXDPpRB1-S8_kNyP_-9Q2Xla6Pk_ehB2sa6jgT2-VSRynNGOXBpVssCfapY8iFt3lsqgzD3a17S1k4t3Pz-AIPL3Z3ZuRHeojbip6oLEw-hFiNvOFgquex7IZsehaOPDBkk1OasIzdS5yPLJEjUOA07r3f8sf1OoF5RzsXBSTAtZBzWdvlC8DQon2Rr"
               layout="fixed"
               width={56}
