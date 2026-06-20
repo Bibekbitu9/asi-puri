@@ -223,7 +223,7 @@ export default function Home() {
                       <Image
                         alt={getMonumentName(m)}
                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                        src={m.images[0] || '/placeholder.png'}
+                        src={m.images[0] || '/placeholder.svg'}
                         layout="fullWidth"
                         loading="lazy"
                       />

@@ -334,7 +334,7 @@ export default function MonumentDetail() {
               animate={{ opacity: 1, scale: 1 }}
               className="bg-[#2D1810] text-white rounded-3xl p-6 border border-amber-950 shadow-[0_4px_25px_rgba(0,0,0,0.03)] relative overflow-hidden group"
             >
-              <div className="absolute inset-0 opacity-5 bg-[url('/pattern.png')] mix-blend-overlay pointer-events-none" />
+              <div className="absolute inset-0 opacity-5 bg-[url('/pattern.svg')] mix-blend-overlay pointer-events-none" />
               <h4 className="font-serif text-lg font-bold text-[var(--color-primary)] mb-2 relative z-10">Protected Area</h4>
               <p className="text-xs text-slate-300 leading-relaxed relative z-10 mb-4">
                 This monument is a protected site under the Archaeological Survey of India (ASI) Puri Circle. Defacement or destruction is a punishable offence.

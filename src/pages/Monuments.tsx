@@ -176,7 +176,7 @@ export default function Monuments() {
                     <Image
                       alt={getMonumentName(m)}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      src={m.images[0] || '/placeholder.png'}
+                      src={m.images[0] || '/placeholder.svg'}
                       layout="fullWidth"
                       loading="lazy"
                       background="auto"
