@@ -113,7 +113,7 @@
   gap: 0.5rem;
   width: 100%;
   padding: 0.875rem 1.5rem;
-  background: var(--color-primary, #E27A3F);
+  background: linear-gradient(to right, var(--color-primary, #E27A3F), #A8451A);
   color: #ffffff;
   font-family: var(--font-sans, 'Inter', sans-serif);
   font-weight: 600;
@@ -121,7 +121,7 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 9999px;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -129,7 +129,7 @@
 }
 
 .hero-cta:hover {
-  background: #c96a34;
+  filter: brightness(1.1);
   box-shadow: 0 6px 20px rgba(226, 122, 63, 0.5);
   transform: translateY(-1px);
 }

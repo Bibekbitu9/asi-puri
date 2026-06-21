@@ -49,7 +49,7 @@ export default function MonumentDetail() {
         <AlertCircle className="w-16 h-16 text-[var(--color-primary)] mb-4 animate-bounce" />
         <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-dark-stone)] mb-4">Monument Not Found</h1>
         <Link 
-          className="text-white bg-[var(--color-primary)] px-6 py-2.5 rounded-full font-bold shadow-md hover:bg-orange-600 transition-colors text-sm" 
+          className="text-white bg-gradient-to-r from-[var(--color-primary)] to-[#A8451A] px-6 py-2.5 rounded-full font-bold shadow-md hover:brightness-110 transition-all text-sm" 
           to="/monuments"
         >
           {t('monuments.back_to_list') || 'Back to Monuments'}
@@ -116,7 +116,7 @@ export default function MonumentDetail() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-block bg-[var(--color-primary)] text-white text-[10px] md:text-xs font-extrabold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full border border-white/10 shadow-md"
+              className="inline-block bg-gradient-to-r from-[var(--color-primary)] to-[#A8451A] text-white text-[10px] md:text-xs font-extrabold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full border border-white/10 shadow-md"
             >
               Monument #{monument.id}
             </motion.span>
@@ -204,7 +204,7 @@ export default function MonumentDetail() {
                     {hasLongDescription && (
                       <button
                         onClick={() => setIsExpanded(!isExpanded)}
-                        className="mt-6 flex items-center justify-center w-full gap-2 py-3.5 bg-[var(--color-neutral)] hover:bg-[var(--color-sandstone)]/30 text-[var(--color-dark-stone)] rounded-2xl font-bold text-xs uppercase tracking-[0.2em] transition-colors border border-[var(--color-muted-gold)]/40 shadow-sm"
+                        className="mt-6 flex items-center justify-center w-full gap-2 py-3.5 bg-[var(--color-neutral)] hover:bg-[var(--color-sandstone)]/30 text-[var(--color-dark-stone)] rounded-full font-bold text-xs uppercase tracking-[0.2em] transition-colors border border-[var(--color-muted-gold)]/40 shadow-sm"
                       >
                         {isExpanded ? (
                           <>Read Less <ChevronUp className="w-4 h-4 text-[var(--color-primary)]" /></>

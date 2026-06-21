@@ -73,7 +73,7 @@ export default function NewsSection() {
                   className="inline-flex items-center justify-between w-full pt-4 border-t border-[var(--color-muted-gold)]/30 text-sm font-bold text-[var(--color-primary)] uppercase tracking-widest group-hover:text-[var(--color-muted-gold)] transition-colors"
                 >
                   <span>Read Article</span>
-                  <div className="w-8 h-8 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[var(--color-primary)] group-hover:to-[#A8451A] group-hover:text-white transition-all">
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </Link>

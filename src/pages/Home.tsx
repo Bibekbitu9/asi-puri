@@ -231,7 +231,7 @@ export default function Home() {
                       <div className="absolute bottom-6 left-6 z-20 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                         <Link
                           to={`/monuments/${m.id}`}
-                          className="bg-white/95 backdrop-blur px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-colors flex items-center gap-2"
+                          className="bg-white/95 backdrop-blur px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-[var(--color-primary)] hover:bg-gradient-to-r hover:from-[var(--color-primary)] hover:to-[#A8451A] hover:text-white transition-all flex items-center gap-2"
                         >
                           Explore Monument <ArrowRight className="w-4 h-4" />
                         </Link>
@@ -278,7 +278,7 @@ export default function Home() {
             className="text-center mt-16 md:mt-32"
           >
             <Link
-              className="inline-flex items-center justify-center px-10 py-4 border-2 border-[var(--color-primary)] bg-transparent text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300 font-bold uppercase text-xs tracking-[0.2em] rounded-full shadow-[0_8px_30px_rgba(226,122,63,0.15)]"
+              className="inline-flex items-center justify-center px-10 py-4 border-2 border-[var(--color-primary)] bg-transparent text-[var(--color-primary)] hover:bg-gradient-to-r hover:from-[var(--color-primary)] hover:to-[#A8451A] hover:text-white transition-all duration-300 font-bold uppercase text-xs tracking-[0.2em] rounded-full shadow-[0_8px_30px_rgba(226,122,63,0.15)]"
               to="/monuments"
             >
               {t('home.view_all')}

@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { Search, MapPin, Calendar, Landmark, ArrowUpDown } from 'lucide-react';
 import { Image } from '@unpic/react';
 import { motion } from 'framer-motion';
@@ -13,6 +13,9 @@ export default function Monuments() {
   const { t, i18n } = useTranslation();
   const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [sortBy, setSortBy] = useState<'id' | 'name'>('id');
   
@@ -75,6 +78,16 @@ export default function Monuments() {
     setLoadedCount(ITEMS_PER_BATCH);
   }, [searchQuery, selectedDistrict, sortBy]);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const displayedMonuments = filteredMonuments.slice(0, loadedCount);
   const hasMore = loadedCount < filteredMonuments.length;
 
@@ -120,7 +133,7 @@ export default function Monuments() {
 
         {/* Filters and Search */}
         <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-slate-200 flex flex-col md:flex-row gap-4 justify-between items-center z-10 relative">
-          <div className="relative w-full md:max-w-md">
+          <div className="relative w-full md:max-w-md" ref={wrapperRef}>
             <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
               <Search className="w-5 h-5" />
             </span>
@@ -129,8 +142,32 @@ export default function Monuments() {
               placeholder={t('monuments.search')}
               type="text"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setShowSuggestions(true);
+              }}
+              onFocus={() => { if(searchQuery.trim()) setShowSuggestions(true); }}
             />
+            {/* Suggestions Dropdown */}
+            {showSuggestions && searchQuery.trim() && filteredMonuments.length > 0 && (
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden z-50 text-left">
+                {filteredMonuments.slice(0, 5).map((m) => (
+                  <div 
+                    key={m.id}
+                    onClick={() => {
+                      navigate(`/monuments/${m.id}`);
+                      setShowSuggestions(false);
+                    }}
+                    className="px-4 py-3 hover:bg-[var(--color-neutral)] cursor-pointer flex flex-col gap-1 border-b border-slate-100 last:border-0 transition-colors"
+                  >
+                    <div className="text-sm font-bold text-slate-800 line-clamp-1">{getMonumentName(m)}</div>
+                    <div className="text-xs text-slate-500 flex items-center gap-1">
+                      <MapPin className="w-3 h-3 flex-shrink-0" /> <span className="line-clamp-1">{getMonumentLocality(m)}, {getMonumentDistrict(m)}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto items-center">
@@ -146,7 +183,7 @@ export default function Monuments() {
             </select>
 
             <button
-              className="w-full sm:w-auto flex items-center justify-center gap-2 border border-slate-200 hover:bg-[var(--color-neutral)] hover:border-[var(--color-muted-gold)] rounded-xl py-2.5 px-4 text-sm font-bold text-slate-700 hover:text-[var(--color-primary)] transition-all shadow-sm"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 border border-slate-200 hover:bg-[var(--color-neutral)] hover:border-[var(--color-muted-gold)] rounded-full py-2.5 px-4 text-sm font-bold text-slate-700 hover:text-[var(--color-primary)] transition-all shadow-sm"
               onClick={() => setSortBy(sortBy === 'id' ? 'name' : 'id')}
             >
               <ArrowUpDown className="w-4 h-4 text-[var(--color-primary)]" />
@@ -208,7 +245,7 @@ export default function Monuments() {
                     </div>
 
                     <Link
-                      className="mt-6 w-full text-center bg-[var(--color-neutral)] border border-[var(--color-muted-gold)] hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] text-[var(--color-primary)] shadow-sm font-sans font-bold uppercase tracking-widest text-xs py-3 rounded-xl transition-all duration-300 block"
+                      className="mt-6 w-full text-center bg-[var(--color-neutral)] border border-[var(--color-muted-gold)] hover:bg-gradient-to-r hover:from-[var(--color-primary)] hover:to-[#A8451A] hover:text-white hover:border-transparent text-[var(--color-primary)] shadow-sm font-sans font-bold uppercase tracking-widest text-xs py-3 rounded-full transition-all duration-300 block"
                       to={`/monuments/${m.id}`}
                     >
                       {t('monuments.view_details')}
