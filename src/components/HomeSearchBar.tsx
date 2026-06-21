@@ -8,7 +8,7 @@ export default function HomeSearchBar() {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLFormElement>(null);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
