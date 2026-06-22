@@ -4,14 +4,23 @@
   --color-primary: #E27A3F; /* Saffron */
   --color-secondary: #C19A6B; /* Muted gold */
   --color-tertiary: #E6D8B8; /* Sandstone */
-  --color-neutral: #F8F5F0; /* Ivory */
+  --color-neutral: #F5F0E8; /* Ivory */
   --color-dark-brown: #2E2C29; /* Dark stone */
   
   --color-saffron: #E27A3F;
   --color-muted-gold: #C19A6B;
   --color-sandstone: #E6D8B8;
-  --color-ivory: #F8F5F0;
+  --color-ivory: #F5F0E8;
   --color-dark-stone: #2E2C29;
+  
+  /* Temple Glassmorphism Colors */
+  --color-surface: #F5F0E8;
+  --color-surface-dim: #E6D8B8;
+  --color-glass-surface: rgba(255, 255, 255, 0.6);
+  --color-glass-border: rgba(193, 154, 107, 0.3);
+  --color-indigo: #4A1C0A; /* Re-purposed to deep terracotta */
+  --color-purple: #8C3310; /* Re-purposed to warm brown */
+  --color-emerald: #C19A6B; /* Re-purposed to muted gold */
 
   --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Inter", "Noto Sans", sans-serif;

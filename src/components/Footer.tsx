@@ -6,7 +6,7 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-gradient-to-r from-[#7A2A10] via-[#A8451A] to-[#D46A25] text-[#F8F5F0] pt-16 pb-8 border-t border-[#C19A6B]/30 relative overflow-hidden">
+    <footer className="bg-gradient-to-r from-[#7A2A10]/95 via-[#A8451A]/95 to-[#D46A25]/95 backdrop-blur-md text-[#F8F5F0] pt-16 pb-8 border-t border-[#C19A6B]/30 relative overflow-hidden shadow-[0_-4px_20px_rgba(74,28,10,0.2)]">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#C15C20]/20 rounded-full blur-3xl pointer-events-none transform translate-x-1/2 -translate-y-1/2" />
 

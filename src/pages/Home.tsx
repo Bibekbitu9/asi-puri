@@ -81,10 +81,15 @@ export default function Home() {
       {/* Global Search Bar Overlay */}
       <HomeSearchBar />
 
-      {/* About Section */}
-      <section className="py-16 md:py-24 bg-[var(--color-neutral)] relative overflow-hidden" id="about-us">
+      {/* Welcome Section - Divine Glassmorphism */}
+      <section className="py-16 md:py-24 bg-[var(--color-surface)] relative overflow-hidden" id="welcome-message">
+        {/* Background glows */}
+        <div className="absolute top-0 right-[-10%] w-[50%] h-[50%] rounded-full bg-[var(--color-muted-gold)] opacity-15 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[var(--color-saffron)] opacity-10 blur-[120px] pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
+            
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -92,34 +97,34 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              <div className="flex items-center gap-4">
-                <div className="h-px w-16 bg-[var(--color-primary)]" />
-                <span className="text-[var(--color-primary)] font-bold uppercase tracking-widest text-xs">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-glass-surface)] border border-[var(--color-glass-border)] backdrop-blur-xl">
+                <span className="text-[var(--color-saffron)] font-bold uppercase tracking-[0.2em] text-xs flex items-center gap-2">
+                  <Sun className="w-4 h-4" />
                   {t('hero.aboutCircle')}
                 </span>
               </div>
-              <h2 className="font-serif text-[1.75rem] md:text-[2.5rem] font-bold text-[var(--color-dark-stone)] leading-tight">
-                {t('home.intro_title')}
+              
+              <h2 className="font-serif text-[1.75rem] md:text-[2.5rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-indigo)] via-[#A8451A] to-[var(--color-saffron)] leading-tight">
+                {t('home.welcome_title')}
               </h2>
-              <p className="text-[var(--color-dark-stone)] opacity-80 text-base leading-relaxed text-justify">
-                {t('home.intro_p1')}
-              </p>
-              <p className="text-[var(--color-dark-stone)] opacity-80 text-base leading-relaxed text-justify">
-                {t('home.intro_p2')}
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
-                <div className="p-6 bg-white/50 backdrop-blur rounded-2xl shadow-sm border border-[var(--color-muted-gold)]/20">
-                  <h3 className="font-serif text-xl font-bold text-[var(--color-primary)] mb-3">Our Mission</h3>
-                  <p className="text-[var(--color-dark-stone)] opacity-80 text-sm leading-relaxed text-justify">
-                    To meticulously preserve, conserve, and research the architectural marvels and archaeological sites of the Puri Circle, safeguarding our shared heritage for future generations.
-                  </p>
-                </div>
-                <div className="p-6 bg-white/50 backdrop-blur rounded-2xl shadow-sm border border-[var(--color-muted-gold)]/20">
-                  <h3 className="font-serif text-xl font-bold text-[var(--color-primary)] mb-3">Our Vision</h3>
-                  <p className="text-[var(--color-dark-stone)] opacity-80 text-sm leading-relaxed text-justify">
-                    A society deeply connected to its roots, where the timeless legacy of Odisha's sandstone temples and historical monuments inspires cultural pride and global appreciation.
-                  </p>
-                </div>
+              
+              <div className="p-6 md:p-8 rounded-[28px] bg-[var(--color-glass-surface)] backdrop-blur-2xl border border-[var(--color-glass-border)] shadow-[0_20px_40px_rgba(74,28,10,0.05)] relative group">
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-saffron)] to-transparent opacity-0 group-hover:opacity-10 rounded-[28px] transition-opacity duration-500"></div>
+                <p className="text-[var(--color-dark-stone)] opacity-90 text-base md:text-lg leading-relaxed text-justify mb-4">
+                  {t('home.welcome_p1')}
+                </p>
+                <p className="text-[var(--color-dark-stone)] opacity-90 text-base md:text-lg leading-relaxed text-justify">
+                  {t('home.welcome_p2')}
+                </p>
+              </div>
+
+              <div className="pt-4">
+                <Link
+                  className="inline-flex items-center justify-center px-8 py-3.5 border border-[var(--color-glass-border)] bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-indigo)] text-white hover:shadow-[0_0_20px_rgba(226,122,63,0.4)] transition-all duration-300 font-bold uppercase text-xs tracking-[0.2em] rounded-full"
+                  to="/about"
+                >
+                  {t('nav.about')}
+                </Link>
               </div>
             </motion.div>
             
@@ -128,10 +133,10 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="relative"
+              className="relative perspective-1000"
             >
-              <div className="absolute -inset-6 border-2 border-[var(--color-muted-gold)]/30 rounded-[2rem] transform rotate-3 scale-105" />
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <div className="absolute -inset-6 border border-[var(--color-glass-border)] bg-[var(--color-glass-surface)] backdrop-blur-sm rounded-[2rem] transform rotate-3 scale-105" />
+              <div className="relative rounded-[28px] overflow-hidden shadow-[0_30px_60px_rgba(74,28,10,0.15)] border border-[var(--color-glass-border)]">
                 <Image
                   alt="Shri Jagannath Temple"
                   className="w-full h-[300px] md:h-[500px] object-cover hover:scale-105 transition-transform duration-1000"
@@ -139,8 +144,10 @@ export default function Home() {
                   layout="fullWidth"
                   loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-transparent opacity-60"></div>
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>

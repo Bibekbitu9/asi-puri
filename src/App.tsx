@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 const Home = lazy(() => import('./pages/Home'));
 const Monuments = lazy(() => import('./pages/Monuments'));
 const MonumentDetail = lazy(() => import('./pages/MonumentDetail'));
+const AboutUs = lazy(() => import('./pages/AboutUs'));
 
 import KonarkLoader from './components/KonarkLoader';
 
@@ -29,6 +30,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/monuments" element={<Monuments />} />
         <Route path="/monuments/:id" element={<MonumentDetail />} />
+        <Route path="/about" element={<AboutUs />} />
       </Routes>
     </AnimatePresence>
   );

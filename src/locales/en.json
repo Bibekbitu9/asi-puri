@@ -17,7 +17,24 @@
     "explore": "Explore Monuments",
     "aboutCircle": "About Puri Circle"
   },
+  "hero_slider": {
+    "slide1_title": "The Pinnacle of Kalingan Architecture",
+    "slide1_sub": "Discover the 13th-century Sun Temple at Konark, a globally celebrated UNESCO World Heritage Site shaped as a celestial stone chariot.",
+    "slide1_cta": "Explore Konark",
+    "slide2_title": "Guarding Sacred Legacies",
+    "slide2_sub": "Experience the architectural grandeur and ancient traditions of the historic 12th-century Shri Jagannath Temple Complex.",
+    "slide2_cta": "Plan Your Visit",
+    "slide3_title": "Echoes of Ancient Enlightenment",
+    "slide3_sub": "Journey through Odisha’s premier excavated Buddhist universities, pristine monastic cells, and world-class site museums.",
+    "slide3_cta": "Discover Buddhist Sites",
+    "slide4_title": "Preserving Our Past for the Future",
+    "slide4_sub": "Witness the meticulous science, exploration, and field research behind protecting 40 centrally protected monuments across Odisha.",
+    "slide4_cta": "Our Conservation Efforts"
+  },
   "home": {
+    "welcome_title": "Puri Circle welcomes you to Odisha’s premier digital heritage gateway.",
+    "welcome_p1": "As custodians of this region's historic treasures, we care for the sacred spires of Puri, the breathtaking architectural marvels of Konark, and dozens of unique regional temples and prehistoric sites.",
+    "welcome_p2": "Whether you are planning your first trip from abroad, working on an academic paper, or rediscovering your hometown roots, we invite you to explore our ancient monuments, view interactive galleries, and join us in preserving our shared past.",
     "announcements": "Announcements",
     "ticker_1": "Welcome to the official portal of Archaeological Survey of India, Puri Circle.",
     "ticker_2": "Puri Circle manages 40 centrally protected monuments and sites including Konark Sun Temple.",
@@ -90,5 +107,14 @@
     "link_asi": "ASI Headquarters Website",
     "link_ministry": "Ministry of Culture Portal",
     "link_odisha": "Odisha Tourism Portal"
+  },
+  "about_page": {
+    "title": "About Us",
+    "asi_title": "About ASI",
+    "asi_desc": "The Archaeological Survey of India (ASI), an attached office under the Ministry of Culture, Government of India, is the premier national organization for archaeological research and the protection of our cultural heritage. Founded over a century and a half ago, the ASI regulates all archaeological activities, manages site museums, and maintains ancient monuments and archaeological remains of national importance across the country.",
+    "circle_title": "About Puri Circle",
+    "circle_desc": "The Puri Circle was officially established on November 9, 2022, following the bifurcation of the erstwhile Bhubaneswar Circle. Our core mission is to carry out scientific conservation, preservation, exploration, excavation, and structural beautification of regional treasures. By focusing dedicated technical and administrative expertise on coastal, western, and northern Odisha, we ensure these irreplaceable historic sites are preserved to world-class standards while expanding public outreach and education.",
+    "jurisdiction_title": "Jurisdiction & Organizational Structure",
+    "jurisdiction_desc": "Headed by the Superintending Archaeologist, the Puri Circle exercises administrative control over 40 centrally protected monuments and sites spread across 15 districts of Odisha. This expansive zone extends up to the borders of West Chhattisgarh, North Jharkhand, and North-East West Bengal, bounded to the east by the Bay of Bengal."
   }
 }

@@ -4,35 +4,45 @@ import { Link } from 'react-router-dom';
 import { MapPin, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Image } from '@unpic/react';
 import { motion, AnimatePresence } from 'framer-motion';
-import monumentsData from '../data/monuments.json';
 import './HeroCarousel.css';
 
-// Carousel slides configuration
 const CAROUSEL_SLIDES = [
   {
+    id: 1,
+    monumentId: 4,
+    image: '/images/(4) The Ancient Monument of the Black Pagoda/1 (4).JPG',
+    titleKey: 'hero_slider.slide1_title',
+    subKey: 'hero_slider.slide1_sub',
+    ctaKey: 'hero_slider.slide1_cta',
+    link: '/monuments/4',
+    locationEn: 'Konark, Puri'
+  },
+  {
+    id: 2,
     monumentId: 1,
-    shortName: 'Shri Jagannath Temple',
-    tagline: 'The Abode of Lord Jagannath',
     image: '/images/(1) Shri Jagannath Temple/1.jpg',
+    titleKey: 'hero_slider.slide2_title',
+    subKey: 'hero_slider.slide2_sub',
+    ctaKey: 'hero_slider.slide2_cta',
+    link: '/monuments/1',
+    locationEn: 'Puri, Puri'
   },
   {
-    monumentId: 22,
-    shortName: 'Barabati Fortress',
-    tagline: 'Medieval Stone Fortress',
-    image: '/images/(22) Churanga Garh Fort locally known as Sarangarh, Cuttack &Khurda/24. Churanga Garh Fort  (1).jpg',
-  },
-  {
+    id: 3,
     monumentId: 32,
-    shortName: 'Ratnagiri Buddhist Ruins',
-    tagline: 'Buddhist Heritage of Odisha',
     image: '/images/(32) Old hill, Ratnagiri, Jajpur/09. Ratnagiri, Jajpur (1).jpg',
-  },
+    titleKey: 'hero_slider.slide3_title',
+    subKey: 'hero_slider.slide3_sub',
+    ctaKey: 'hero_slider.slide3_cta',
+    link: '/monuments/32',
+    locationEn: 'Ratnagiri, Jajpur'
+  }
 ];
 
 const AUTO_ADVANCE_MS = 6000;
 
 export default function HeroCarousel() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
@@ -42,29 +52,6 @@ export default function HeroCarousel() {
   const progressStart = useRef(Date.now());
 
   const totalSlides = CAROUSEL_SLIDES.length;
-
-  const getMonumentName = useCallback((id: number) => {
-    const m = monumentsData.find((mon: any) => mon.id === id);
-    if (!m) return '';
-    const lang = i18n.language as 'en' | 'hi' | 'od';
-    return (m as any).names[lang] || (m as any).names.en;
-  }, [i18n.language]);
-
-  const getMonumentLocality = useCallback((id: number) => {
-    const m = monumentsData.find((mon: any) => mon.id === id);
-    if (!m) return '';
-    const lang = i18n.language as 'en' | 'hi' | 'od';
-    if (lang === 'od') {
-      return (m as any).metadata.en?.locality || '';
-    }
-    return (m as any).metadata[lang]?.locality || (m as any).metadata.en?.locality || '';
-  }, [i18n.language]);
-
-  const getMonumentDistrict = useCallback((id: number) => {
-    const m = monumentsData.find((mon: any) => mon.id === id);
-    if (!m) return '';
-    return (m as any).metadata.en?.district || '';
-  }, []);
 
   // Navigate to a specific slide
   const goToSlide = useCallback((index: number) => {
@@ -198,12 +185,12 @@ export default function HeroCarousel() {
           className="hero-slide"
           role="group"
           aria-roledescription="slide"
-          aria-label={`Slide ${currentSlide + 1} of ${totalSlides}: ${getMonumentName(currentConfig.monumentId)}`}
+          aria-label={`Slide ${currentSlide + 1} of ${totalSlides}: ${t(currentConfig.titleKey)}`}
         >
           {/* Background Image */}
           <Image
             src={currentConfig.image}
-            alt={getMonumentName(currentConfig.monumentId)}
+            alt={t(currentConfig.titleKey) as string}
             layout="fullWidth"
             className="hero-slide__image"
             fetchPriority={currentSlide === 0 ? 'high' : 'auto'}
@@ -220,32 +207,32 @@ export default function HeroCarousel() {
             exit="exit"
             className="hero-slide__content"
           >
-            <div className="hero-slide__glass">
+            <div className="hero-slide__glass !bg-[rgba(255,255,255,0.75)] !backdrop-blur-xl border border-[var(--color-glass-border)] !shadow-[0_8px_32px_rgba(193,154,107,0.3)]">
               {/* Location Chip */}
-              <div className="hero-location">
+              <div className="hero-location !bg-[var(--color-saffron)]/10 !border-[var(--color-saffron)]/30">
                 <MapPin className="w-3 h-3 text-[var(--color-primary)]" />
-                <span className="hero-location__text">
-                  {getMonumentLocality(currentConfig.monumentId)}, {getMonumentDistrict(currentConfig.monumentId)}
+                <span className="hero-location__text !text-[var(--color-text-primary)]">
+                  {currentConfig.locationEn}
                 </span>
               </div>
 
               {/* Monument Name */}
-              <h2 className="font-serif text-[1.5rem] md:text-[2.5rem] font-bold text-white leading-tight mb-1 drop-shadow-lg line-clamp-2">
-                {currentConfig.shortName}
+              <h2 className="font-serif text-[1.5rem] md:text-[2.5rem] font-bold text-[var(--color-text-primary)] leading-tight mb-2 drop-shadow-sm">
+                {t(currentConfig.titleKey)}
               </h2>
 
               {/* Tagline */}
-              <p className="text-sm md:text-base text-white/75 italic mb-5 font-sans">
-                '{currentConfig.tagline}'
+              <p className="text-sm md:text-base text-[var(--color-text-secondary)] font-medium mb-6 font-sans">
+                {t(currentConfig.subKey)}
               </p>
 
               {/* CTA Button */}
               <Link
-                to={`/monuments/${currentConfig.monumentId}`}
-                className="hero-cta"
+                to={currentConfig.link}
+                className="hero-cta !bg-gradient-to-r !from-[var(--color-primary)] !to-[var(--color-saffron)] !shadow-[0_4px_15px_rgba(226,122,63,0.35)]"
                 id={`hero-cta-slide-${currentSlide}`}
               >
-                <span>{t('hero.explore') || 'Explore Monument'}</span>
+                <span>{t(currentConfig.ctaKey)}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -256,14 +243,14 @@ export default function HeroCarousel() {
       {/* Desktop Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 items-center justify-center text-white hover:bg-white/20 transition-all duration-300 group"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[rgba(255,255,255,0.7)] backdrop-blur-md border border-[var(--color-glass-border)] items-center justify-center text-[var(--color-text-primary)] hover:bg-white hover:shadow-lg transition-all duration-300 group"
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
       </button>
       <button
         onClick={nextSlide}
-        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 items-center justify-center text-white hover:bg-white/20 transition-all duration-300 group"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[rgba(255,255,255,0.7)] backdrop-blur-md border border-[var(--color-glass-border)] items-center justify-center text-[var(--color-text-primary)] hover:bg-white hover:shadow-lg transition-all duration-300 group"
         aria-label="Next slide"
       >
         <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
@@ -275,7 +262,10 @@ export default function HeroCarousel() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`hero-dot ${index === currentSlide ? 'hero-dot--active' : 'hero-dot--inactive'}`}
+            className={`hero-dot ${index === currentSlide ? 'hero-dot--active' : 'hero-dot--inactive'} !shadow-none`}
+            style={{
+               backgroundColor: index === currentSlide ? 'var(--color-primary)' : 'rgba(255,255,255,0.8)'
+            }}
             role="tab"
             aria-selected={index === currentSlide}
             aria-label={`Go to slide ${index + 1}`}

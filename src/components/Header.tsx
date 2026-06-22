@@ -16,7 +16,7 @@ export default function Header() {
   };
 
   const navItems = [
-    { key: 'about', path: '/#about-us' },
+    { key: 'about', path: '/about' },
     { key: 'updates', path: '/#latest-updates' },
     { key: 'news', path: '/#news-press' },
     { key: 'featured_monuments', path: '/#featured-monuments' }
@@ -45,9 +45,9 @@ export default function Header() {
   };
 
   return (
-    <div className="w-full bg-[#4A1C0A] text-[#F8F5F0]">
+    <div className="w-full z-40 sticky top-0">
       {/* TopAppBar (Sticky Header) */}
-      <header className="bg-gradient-to-r from-[#7A2A10] via-[#A8451A] to-[#D46A25] border-b border-[#C19A6B]/30 shadow-[0_4px_20px_rgba(0,0,0,0.5)] top-0 z-40 sticky transition-all duration-300">
+      <header className="bg-gradient-to-r from-[#7A2A10]/95 via-[#A8451A]/95 to-[#D46A25]/95 backdrop-blur-md border-b border-[#C19A6B]/30 shadow-[0_4px_20px_rgba(74,28,10,0.3)] transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
             {/* Brand/Logo */}
