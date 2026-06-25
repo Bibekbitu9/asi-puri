@@ -6,7 +6,7 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-gradient-to-r from-[#7A2A10]/95 via-[#A8451A]/95 to-[#D46A25]/95 backdrop-blur-md text-[#F8F5F0] pt-16 pb-8 border-t border-[#C19A6B]/30 relative overflow-hidden shadow-[0_-4px_20px_rgba(74,28,10,0.2)]">
+    <footer className="bg-gradient-to-r from-[#2D1810] via-[#462819] to-[#603B22] backdrop-blur-md text-[#F8F5F0] pt-16 pb-8 border-t border-[#C19A6B]/30 relative overflow-hidden shadow-[0_-4px_20px_rgba(45,24,16,0.5)]">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#C15C20]/20 rounded-full blur-3xl pointer-events-none transform translate-x-1/2 -translate-y-1/2" />
 
@@ -17,8 +17,8 @@ export default function Footer() {
           <div className="flex items-center gap-3 mb-4">
             <Image
               alt="ASI Puri Circle Logo"
-              className="h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-full border border-[#C4873B]/30 bg-white p-0.5 flex-shrink-0"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWyb98dUAZQ5Uqkfb9RMCiPybf3oVtTyJPP-OEYw-nqza1PLcZZ6wzPOGYAQV3XoxNkfF_qehF9SSLyamK8fXDPpRB1-S8_kNyP_-9Q2Xla6Pk_ehB2sa6jgT2-VSRynNGOXBpVssCfapY8iFt3lsqgzD3a17S1k4t3Pz-AIPL3Z3ZuRHeojbip6oLEw-hFiNvOFgquex7IZsehaOPDBkk1OasIzdS5yPLJEjUOA07r3f8sf1OoF5RzsXBSTAtZBzWdvlC8DQon2Rr"
+              className="h-10 w-10 sm:h-14 sm:w-14 object-contain flex-shrink-0"
+              src="/asi_logo.jpg.jpeg"
               layout="fixed"
               width={56}
               height={56}

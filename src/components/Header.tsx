@@ -47,7 +47,7 @@ export default function Header() {
   return (
     <div className="w-full z-40 sticky top-0">
       {/* TopAppBar (Sticky Header) */}
-      <header className="bg-gradient-to-r from-[#7A2A10]/95 via-[#A8451A]/95 to-[#D46A25]/95 backdrop-blur-md border-b border-[#C19A6B]/30 shadow-[0_4px_20px_rgba(74,28,10,0.3)] transition-all duration-300">
+      <header className="bg-gradient-to-r from-[#2D1810] via-[#462819] to-[#603B22] backdrop-blur-md border-b border-[#C19A6B]/30 shadow-[0_4px_20px_rgba(45,24,16,0.3)] transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
             {/* Brand/Logo */}
@@ -55,8 +55,8 @@ export default function Header() {
               <Link className="flex items-center gap-2 sm:gap-3" to="/">
                 <Image
                   alt="ASI Puri Circle Logo"
-                  className="h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-full border border-[#C4873B]/30 bg-white p-0.5 flex-shrink-0"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWyb98dUAZQ5Uqkfb9RMCiPybf3oVtTyJPP-OEYw-nqza1PLcZZ6wzPOGYAQV3XoxNkfF_qehF9SSLyamK8fXDPpRB1-S8_kNyP_-9Q2Xla6Pk_ehB2sa6jgT2-VSRynNGOXBpVssCfapY8iFt3lsqgzD3a17S1k4t3Pz-AIPL3Z3ZuRHeojbip6oLEw-hFiNvOFgquex7IZsehaOPDBkk1OasIzdS5yPLJEjUOA07r3f8sf1OoF5RzsXBSTAtZBzWdvlC8DQon2Rr"
+                  className="h-10 w-10 sm:h-14 sm:w-14 object-contain flex-shrink-0"
+                  src="/asi_logo.jpg.jpeg"
                   layout="fixed"
                   width={56}
                   height={56}
